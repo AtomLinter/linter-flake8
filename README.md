@@ -31,3 +31,6 @@ In configuration you can specify executable directory if node hasn't it in **$PA
 'linter-python-flake8':
   'executablyDirectory': '/usr/local/bin/'
 ```
+
+##Screenshot
+![img](https://raw.githubusercontent.com/badray/linter-python-flake8/master/screenshot.png)
