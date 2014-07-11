@@ -7,7 +7,7 @@
   "activationEvents": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/badwray/linter-python-flake8"
+    "url": "https://github.com/badray/linter-python-flake8"
   },
   "license": "MIT",
   "engines": {
@@ -17,8 +17,8 @@
   "readme": "",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/badwray/linter-python-flake8"
+    "url": "https://github.com/badray/linter-python-flake8"
   },
-  "homepage": "https://github.com/badwray/linter-python-flake8",
+  "homepage": "https://github.com/badray/linter-python-flake8",
   "_id": "linter-python-flake8@1.0.1"
 }
