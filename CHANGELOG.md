@@ -4,3 +4,4 @@
 ### 1.0.3 - release on atom.io
 ### 1.0.4 - updated readme
 ### 1.0.5 - F841 are now considered as warnings
+### 1.0.5a - fixed formatting in readme 
