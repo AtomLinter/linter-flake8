@@ -2,7 +2,7 @@
   "name": "linter-python-flake8",
   "linter-package": true,
   "main": "./lib/init",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Linting Python files on the fly using flake8 with Atom",
   "activationEvents": [],
   "repository": {
