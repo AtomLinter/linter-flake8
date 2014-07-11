@@ -22,7 +22,7 @@ Install plugin by typing:
    $ apm install linter-python-flake8
    ```
 
-## Settings
+### Settings
 You can configure linter-python-flake8 as nearly all [Atom](https://atom.io/) modules by editing *~/.atom/config.cson* (click *Open Your Config*
 in *Atom* menu).
 In configuration you can specify executable directory if node hasn't it in **$PATH**. Example:
@@ -32,5 +32,5 @@ In configuration you can specify executable directory if node hasn't it in **$PA
   'executablyDirectory': '/usr/local/bin/'
 ```
 
-##Screenshot
+### Screenshot
 ![img](https://raw.githubusercontent.com/badray/linter-python-flake8/master/screenshot.png)
