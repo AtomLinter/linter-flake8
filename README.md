@@ -14,7 +14,7 @@ system.
 Install [flake8](https://pypi.python.org/pypi/flake8) by typing the following
 in a terminal:
    ```
-   pip install pyflakes
+   pip install flake8
    ```
 
 Install plugin by typing:
@@ -29,7 +29,7 @@ In configuration you can specify executable directory if node hasn't it in **$PA
 
 ```
 'linter-python-flake8':
-  'executablyDirectory': '/usr/local/bin/'
+  'executableDir': '/usr/local/bin/'
 ```
 
 ### Screenshot
