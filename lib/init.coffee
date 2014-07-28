@@ -3,4 +3,4 @@ module.exports =
     ExecutableDir: null
 
   activate: ->
-    console.log 'activate linter-python-flake8'
+    console.log 'activate linter-flake8'

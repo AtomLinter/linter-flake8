@@ -18,10 +18,10 @@ class LinterFlake8 extends Linter
   constructor: (editor)->
     super(editor)
 
-    atom.config.observe 'linter-python-flake8.executableDir', =>
-      @executablePath = atom.config.get 'linter-python-flake8.executableDir'
+    atom.config.observe 'linter-flake8.executableDir', =>
+      @executablePath = atom.config.get 'linter-flake8.executableDir'
 
   destroy: ->
-    atom.config.unobserve 'linter-python-flake8.executableDir'
+    atom.config.unobserve 'linter-flake8.executableDir'
 
 module.exports = LinterFlake8
