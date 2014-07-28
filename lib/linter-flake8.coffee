@@ -35,7 +35,7 @@ class LinterFlake8 extends Linter
   updateCommand: ->
     cmd = 'flake8'
     maxLineLength = atom.config.get 'linter-flake8.maxLineLength'
-    errorCodes = atom.config.get 'linter-pep8.ignoreErrorCodes'
+    errorCodes = atom.config.get 'linter-flake8.ignoreErrorCodes'
 
     if maxLineLength
       cmd = "#{cmd} --max-line-length=#{maxLineLength}"
