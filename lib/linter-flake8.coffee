@@ -13,7 +13,7 @@ class LinterFlake8 extends Linter
 
   # A regex pattern used to extract information from the executable's output.
   regex:
-    '(.*?):(?<line>\\d+):(?<col>\\d+): (?<message>((?<error>E11|E9)|(?<warning>W|E|F4|F84|N*|C)|F)\\d+ .*?)\n'
+    '(.*?):(?<line>\\d+):(?<col>\\d+): (?<message>((?<error>E11|E9)|(?<warning>W|E|F4|F84|N*|C)|F)\\d+ .*?)\r?\n'
 
   constructor: (editor)->
     super(editor)
