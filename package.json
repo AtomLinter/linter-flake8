@@ -3,7 +3,7 @@
   "linter-package": true,
   "main": "./lib/init",
   "version": "1.1.0",
-  "description": "Linting Python files on the fly using flake8 with Atom",
+  "description": "Atom linter plugin for Python, using flake8",
   "activationEvents": [],
   "repository": {
     "type": "git",
