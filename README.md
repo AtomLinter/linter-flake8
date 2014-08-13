@@ -34,3 +34,6 @@ In configuration you can specify executable directory if node hasn't it in **$PA
 
 ### Screenshot
 ![img](https://raw.githubusercontent.com/badray/linter-flake8/master/screenshot.png)
+
+## Donation
+[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)
