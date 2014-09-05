@@ -27,21 +27,29 @@ class LinterFlake8 extends Linter
     atom.config.observe 'linter-flake8.ignoreErrorCodes', =>
       @updateCommand()
 
+    atom.config.observe 'linter-flake8.maxComplexity', =>
+      @updateCommand()
+
   destroy: ->
     atom.config.unobserve 'linter-flake8.maxLineLength'
     atom.config.unobserve 'linter-flake8.ignoreErrorCodes'
     atom.config.unobserve 'linter-flake8.executableDir'
+    atom.config.unobserve 'linter-flake8.maxComplexity'
 
   updateCommand: ->
     cmd = 'flake8'
     maxLineLength = atom.config.get 'linter-flake8.maxLineLength'
     errorCodes = atom.config.get 'linter-flake8.ignoreErrorCodes'
+    maxComplexity = atom.config.get 'linter-flake8.maxComplexity'
 
     if maxLineLength
       cmd = "#{cmd} --max-line-length=#{maxLineLength}"
 
     if errorCodes and errorCodes.length > 0
       cmd += " --ignore=#{errorCodes.toString()}"
+
+    if maxComplexity
+      cmd += " --max-complexity=#{maxComplexity}"
 
     @cmd = cmd
 module.exports = LinterFlake8
