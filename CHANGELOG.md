@@ -9,4 +9,4 @@
 ### 1.0.8 - changed repo name to linter-flake8, added new options in config, fixed a typo in config
 ### 1.1.0 - repo moved to AtomLinter organisation
 ### 1.1.1 - handled windows line endings
-### 1.1.2 - Add maxComplexity and selectErrors options to config
+### 1.2.0 - Add maxComplexity and selectErrors options to config
