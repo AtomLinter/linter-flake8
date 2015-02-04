@@ -68,4 +68,5 @@ class LinterFlake8 extends Linter
       cmd += " --hang-closing"
 
     @cmd = cmd
+
 module.exports = LinterFlake8
