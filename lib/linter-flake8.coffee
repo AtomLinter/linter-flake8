@@ -33,12 +33,16 @@ class LinterFlake8 extends Linter
     atom.config.observe 'linter-flake8.selectErrors', =>
       @updateCommand()
 
+    atom.config.observe 'linter-flake8.hangClosing', =>
+      @updateCommand()
+
   destroy: ->
     atom.config.unobserve 'linter-flake8.maxLineLength'
     atom.config.unobserve 'linter-flake8.ignoreErrorCodes'
     atom.config.unobserve 'linter-flake8.executableDir'
     atom.config.unobserve 'linter-flake8.maxComplexity'
     atom.config.unobserve 'linter-flake8.selectErrors'
+    atom.config.unobserve 'linter-flake8.hangClosing'
 
   updateCommand: ->
     cmd = 'flake8'
@@ -46,6 +50,7 @@ class LinterFlake8 extends Linter
     errorCodes = atom.config.get 'linter-flake8.ignoreErrorCodes'
     maxComplexity = atom.config.get 'linter-flake8.maxComplexity'
     selectErrors = atom.config.get 'linter-flake8.selectErrors'
+    hangClosing = atom.config.get 'linter-flake8.hangClosing'
 
     if maxLineLength
       cmd = "#{cmd} --max-line-length=#{maxLineLength}"
@@ -58,6 +63,9 @@ class LinterFlake8 extends Linter
 
     if selectErrors
       cmd += " --select=#{selectErrors.toString()}"
+
+    if hangClosing
+      cmd += " --hang-closing"
 
     @cmd = cmd
 module.exports = LinterFlake8

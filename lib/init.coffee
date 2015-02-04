@@ -4,6 +4,7 @@ module.exports =
     maxLineLength: 79
     ignoreErrorCodes: []
     maxComplexity: 10
+    hangClosing: false
     selectErrors: null
 
   activate: ->
