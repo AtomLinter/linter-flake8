@@ -45,7 +45,7 @@ class LinterFlake8 extends Linter
     atom.config.unobserve 'linter-flake8.hangClosing'
 
   updateCommand: ->
-    cmd = 'flake8'
+    cmd = ['flake8']
     maxLineLength = atom.config.get 'linter-flake8.maxLineLength'
     errorCodes = atom.config.get 'linter-flake8.ignoreErrorCodes'
     maxComplexity = atom.config.get 'linter-flake8.maxComplexity'
@@ -53,19 +53,19 @@ class LinterFlake8 extends Linter
     hangClosing = atom.config.get 'linter-flake8.hangClosing'
 
     if maxLineLength
-      cmd = "#{cmd} --max-line-length=#{maxLineLength}"
+      cmd.push '--max-line-length', maxLineLength
 
     if errorCodes and errorCodes.length > 0
-      cmd += " --ignore=#{errorCodes.toString()}"
+      cmd.push '--ignore', errorCodes.toString()
 
     if maxComplexity
-      cmd += " --max-complexity=#{maxComplexity}"
+      cmd.push '--max-complexity', maxComplexity
 
     if selectErrors
-      cmd += " --select=#{selectErrors.toString()}"
+      cmd.push '--select', selectErrors.toString()
 
     if hangClosing
-      cmd += " --hang-closing"
+      cmd.push '--hang-closing'
 
     @cmd = cmd
 
