@@ -1,6 +1,7 @@
 linterPath = atom.packages.getLoadedPackage("linter").path
 
 Linter = require "#{linterPath}/lib/linter"
+{findFile} = require "#{linterPath}/lib/utils"
 
 class LinterFlake8 extends Linter
   @syntax: ['source.python']
@@ -17,6 +18,8 @@ class LinterFlake8 extends Linter
 
   constructor: (editor)->
     super(editor)
+
+    @configFile = findFile @cwd, ['setup.cfg', 'tox.ini', '.pep8']
 
     atom.config.observe 'linter-flake8.executableDir', =>
       @executablePath = atom.config.get 'linter-flake8.executableDir'
@@ -54,6 +57,9 @@ class LinterFlake8 extends Linter
 
     if maxLineLength
       cmd.push '--max-line-length', maxLineLength
+
+    if @configFile
+      cmd.push '--config', @configFile
 
     if errorCodes and errorCodes.length > 0
       cmd.push '--ignore', errorCodes.toString()
