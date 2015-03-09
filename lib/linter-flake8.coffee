@@ -13,13 +13,18 @@ class LinterFlake8 extends Linter
 
   # A regex pattern used to extract information from the executable's output.
   regex:
-    '(.*?):(?<line>\\d+):(?<col>\\d+): (?<message>((?<error>E11|E9)|(?<warning>W|E|F4|F84|N*|C|D|Q)|F)\\d+ .*?)\r?\n'
+    '(.*?):(?<line>\\d+):(?<col>\\d+): ' +
+    '(?<message>((?<error>E11|E9)|' +
+    '(?<warning>W|E|F4|F84|N*|C|D|Q)|F)\\d+ .*?)\r?\n'
 
   constructor: (editor)->
     super(editor)
 
     atom.config.observe 'linter-flake8.executableDir', =>
       @executablePath = atom.config.get 'linter-flake8.executableDir'
+
+    atom.config.observe 'linter-flake8.binaryName', =>
+      @updateCommand()
 
     atom.config.observe 'linter-flake8.maxLineLength', =>
       @updateCommand()
@@ -45,7 +50,7 @@ class LinterFlake8 extends Linter
     atom.config.unobserve 'linter-flake8.hangClosing'
 
   updateCommand: ->
-    cmd = 'flake8'
+    cmd = atom.config.get 'linter-flake8.binaryName'
     maxLineLength = atom.config.get 'linter-flake8.maxLineLength'
     errorCodes = atom.config.get 'linter-flake8.ignoreErrorCodes'
     maxComplexity = atom.config.get 'linter-flake8.maxComplexity'
