@@ -3,6 +3,11 @@ module.exports =
     executableDir:
       type: 'string'
       default: 'None'
+    binaryName:
+      type: 'string'
+      default: 'flake8'
+      description: 'You might need a different binary name for python2 ' +
+                   '(e.g. flake8-python2)'
     maxLineLength:
       type: 'integer'
       default: 79
