@@ -2,7 +2,7 @@ module.exports =
   config:
     executableDir:
       type: 'string'
-      default: 'None'
+      default: ''
     binaryName:
       type: 'string'
       default: 'flake8'
@@ -10,7 +10,7 @@ module.exports =
                    '(e.g. flake8-python2)'
     maxLineLength:
       type: 'integer'
-      default: 79
+      default: 0
     ignoreErrorCodes:
       type: 'array'
       default: []

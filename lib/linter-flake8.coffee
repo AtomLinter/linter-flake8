@@ -6,6 +6,8 @@ Linter = require "#{linterPath}/lib/linter"
 class LinterFlake8 extends Linter
   @syntax: ['source.python']
 
+  executablePath: null
+
   cmd: ['flake8']
 
   linterName: 'flake8'
@@ -22,7 +24,10 @@ class LinterFlake8 extends Linter
     @configFile = findFile @cwd, ['setup.cfg', 'tox.ini', '.pep8']
 
     atom.config.observe 'linter-flake8.executableDir', =>
-      @executablePath = atom.config.get 'linter-flake8.executableDir'
+      executableDir = atom.config.get 'linter-flake8.executableDir'
+
+      if executableDir
+        @executablePath = if executableDir.length > 0 then executableDir else null
 
     atom.config.observe 'linter-flake8.binaryName', =>
       @updateCommand()
