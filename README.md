@@ -17,6 +17,15 @@ in a terminal:
    pip install flake8
    ```
 
+To include built-in docstrings (pep257) support you will also need to install:
+   ```
+   pip install flake8-docstrings
+   ```
+or:
+   ```
+   pip install flake8-pep257
+   ```
+
 Install plugin by typing:
    ```
    $ apm install linter-flake8
