@@ -66,23 +66,24 @@ class LinterFlake8 extends Linter
 
     cmd = [binary_name]
 
-    if maxLineLength
-      cmd.push '--max-line-length', maxLineLength
-
     if @configFile
+      # skip plugins settings if config file is found
       cmd.push '--config', @configFile
+    else
+      if maxLineLength
+        cmd.push '--max-line-length', maxLineLength
 
-    if errorCodes and errorCodes.length > 0
-      cmd.push '--ignore', errorCodes.toString()
+      if errorCodes and errorCodes.length > 0
+        cmd.push '--ignore', errorCodes.toString()
 
-    if maxComplexity
-      cmd.push '--max-complexity', maxComplexity
+      if maxComplexity
+        cmd.push '--max-complexity', maxComplexity
 
-    if selectErrors
-      cmd.push '--select', selectErrors.toString()
+      if selectErrors
+        cmd.push '--select', selectErrors.toString()
 
-    if hangClosing
-      cmd.push '--hang-closing'
+      if hangClosing
+        cmd.push '--hang-closing'
 
     @cmd = cmd
 
