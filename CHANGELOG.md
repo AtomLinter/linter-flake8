@@ -10,3 +10,5 @@
 ### 1.1.0 - repo moved to AtomLinter organisation
 ### 1.1.1 - handled windows line endings
 ### 1.2.0 - Add maxComplexity and selectErrors options to config
+### 1.3.0 - pep257 errors are now hadnled, minor patches
+### 1.4.0 - flake8 config files is now handled
