@@ -4,7 +4,7 @@
   "main": "./lib/init",
   "version": "1.4.0",
   "description": "Atom linter plugin for Python, using flake8",
-  "activationEvents": [],
+  "activationCommands": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/AtomLinter/linter-flake8"
