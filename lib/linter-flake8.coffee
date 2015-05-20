@@ -23,38 +23,38 @@ class LinterFlake8 extends Linter
 
     @configFile = findFile @cwd, ['setup.cfg', 'tox.ini', '.pep8']
 
-    atom.config.observe 'linter-flake8.executableDir', =>
+    @executableDirListener = atom.config.observe 'linter-flake8.executableDir', =>
       executableDir = atom.config.get 'linter-flake8.executableDir'
 
       if executableDir
         @executablePath = if executableDir.length > 0 then executableDir else null
 
-    atom.config.observe 'linter-flake8.binaryName', =>
+    @binaryNameListener = atom.config.observe 'linter-flake8.binaryName', =>
       @updateCommand()
 
-    atom.config.observe 'linter-flake8.maxLineLength', =>
+    @maxLineLengthListener = atom.config.observe 'linter-flake8.maxLineLength', =>
       @updateCommand()
 
-    atom.config.observe 'linter-flake8.ignoreErrorCodes', =>
+    @ignoreErrorCodesListener = atom.config.observe 'linter-flake8.ignoreErrorCodes', =>
       @updateCommand()
 
-    atom.config.observe 'linter-flake8.maxComplexity', =>
+    @maxComplexityListener = atom.config.observe 'linter-flake8.maxComplexity', =>
       @updateCommand()
 
-    atom.config.observe 'linter-flake8.selectErrors', =>
+    @selectErrorsListener = atom.config.observe 'linter-flake8.selectErrors', =>
       @updateCommand()
 
-    atom.config.observe 'linter-flake8.hangClosing', =>
+    @hangClosingListener = atom.config.observe 'linter-flake8.hangClosing', =>
       @updateCommand()
 
   destroy: ->
-    atom.config.unobserve 'linter-flake8.executableDir'
-    atom.config.unobserve 'linter-flake8.binaryName'
-    atom.config.unobserve 'linter-flake8.maxLineLength'
-    atom.config.unobserve 'linter-flake8.ignoreErrorCodes'
-    atom.config.unobserve 'linter-flake8.maxComplexity'
-    atom.config.unobserve 'linter-flake8.selectErrors'
-    atom.config.unobserve 'linter-flake8.hangClosing'
+    @executableDirListener.dispose()
+    @binaryNameListener.dispose()
+    @maxLineLengthListener.dispose()
+    @ignoreErrorCodesListener.dispose()
+    @maxComplexityListener.dispose()
+    @selectErrorsListener.dispose()
+    @hangClosingListener.dispose()
 
   updateCommand: ->
     binary_name = atom.config.get 'linter-flake8.binaryName'
