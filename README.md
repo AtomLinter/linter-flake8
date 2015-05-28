@@ -28,6 +28,11 @@ or:
    pip install flake8-pep257
    ```
 
+To support [OpenStack Style Guidelines](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html), you will also need to install [hacking](https://github.com/openstack-dev/hacking) module:
+  ```
+  pip install hacking
+  ```
+
 Install plugin by typing:
    ```
    $ apm install linter-flake8
