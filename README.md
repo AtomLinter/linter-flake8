@@ -19,6 +19,12 @@ in a terminal:
    pip install flake8
    ```
 
+Install plugin by typing:
+   ```
+   $ apm install linter-flake8
+   ```
+
+##### Bult-in docstrings check (Optional)
 To include built-in docstrings (pep257) support you will also need to install:
    ```
    pip install flake8-docstrings
@@ -28,10 +34,11 @@ or:
    pip install flake8-pep257
    ```
 
-Install plugin by typing:
-   ```
-   $ apm install linter-flake8
-   ```
+##### OpenStack Style Guidelines check (Optional)
+To support [OpenStack Style Guidelines](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html), you will also need to install [hacking](https://github.com/openstack-dev/hacking) module:
+  ```
+  pip install hacking
+  ```
 
 ### Settings
 You can configure linter-flake8 as nearly all [Atom](https://atom.io/) modules by editing plugin settings in *Atom->Preferences->Packages->linter-flake-8*.
