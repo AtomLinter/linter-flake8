@@ -1,5 +1,26 @@
 module.exports =
   config:
+    useToxIni:
+      type: 'boolean'
+      default: false
+      title: 'Use tox.ini'
+      description: 'Use `tox.ini` in your project folder if found. This will
+                    override any settings that have been specified manually and
+                    will take precedence over `Use setup.cfg` and
+                    `Use .pep8 Config`'
+    useSetupCfg:
+      type: 'boolean'
+      default: false
+      title: 'Use setup.cfg'
+      description: 'Use `setup.cfg` in your project folder if found. This will
+                    override any settings that have been specified manually
+                    and will take precedence over `Use .pep8 Config`.'
+    useDotPep8Config:
+      type: 'boolean'
+      default: false
+      title: 'Use .pep8 Config'
+      description: 'Use `.pep8` in your project folder if found. This will
+                    override any settings that have been specified manually.'
     executableDir:
       type: 'string'
       default: ''
