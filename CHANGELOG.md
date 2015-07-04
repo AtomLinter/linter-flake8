@@ -13,3 +13,5 @@
 ### 1.3.0 - pep257 errors are now handled, minor patches
 ### 1.4.0 - flake8 config files is now handled
 ### 1.4.1 - fixed deprecation warnings
+### 1.4.2 - prepared package to new version of Linter 
+### 1.5.0 - added Hacking module support, added ability to choose config name
