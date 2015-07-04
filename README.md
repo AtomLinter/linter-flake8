@@ -55,5 +55,10 @@ In configuration you can specify executable directory if node hasn't it in **$PA
   'executableDir': '/usr/local/bin/'
 ```
 
+### Project configuration files
+Linter also supports reading flake8 configuration files. To use them, you need specify their names manually into *Config Files Names* in plugin settings. Please take a note, that  plugin settings from configuration panel will be **ignored** if configuration file was found.
+
+![img](https://raw.githubusercontent.com/badray/linter-flake8/master/screenshot_config_names.png)
+
 ## Donation
 [![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)
