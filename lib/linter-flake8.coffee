@@ -4,7 +4,7 @@ Linter = require "#{linterPath}/lib/linter"
 {findFile} = require "#{linterPath}/lib/utils"
 
 class LinterFlake8 extends Linter
-  @syntax: ['source.python']
+  @syntax: ['source.python', 'source.python.django']
 
   executablePath: null
 
