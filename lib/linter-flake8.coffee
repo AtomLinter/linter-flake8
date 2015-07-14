@@ -19,7 +19,7 @@ class LinterFlake8 extends Linter
   regex:
     '(.*?):(?<line>\\d+):(?<col>\\d+): ' +
     '(?<message>((?<error>E11|E9)|' +
-    '(?<warning>W|E|F4|F84|N*|C|D|Q|H)|F)\\d+ .*?)\r?\n'
+    '(?<warning>W|E|F4|F84|N*|C|D|Q|H|I)|F)\\d+ .*?)\r?\n'
 
   constructor: (editor)->
     super(editor)
