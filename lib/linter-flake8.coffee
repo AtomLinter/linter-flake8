@@ -80,7 +80,7 @@ class LinterFlake8 extends Linter
       if tmp_file_names.length > 0
         @configFile = findFile @cwd, tmp_file_names
     else
-      console.log 'no udpate needed, equal.'
+      console.log 'no update needed, equal.'
 
   updateCommand: ->
     binary_name = atom.config.get 'linter-flake8.binaryName'
