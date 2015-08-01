@@ -37,12 +37,14 @@ module.exports =
       default: []
       items:
         type: 'string'
+
   provideLinter: ->
     helpers = require('atom-linter')
     regex =
     '(.*?):(?<line>\\d+):(?<col>\\d+): ' +
       '(?<message>((?<error>E11|E9)|' +
       '(?<warning>W|E|F4|F84|N*|C|D|Q|H|I)|F)\\d+ .*?)\r?\n'
+
     provider =
       grammarScopes: ['source.python', 'source.python.django']
       scope: 'file' # or 'project'
@@ -51,6 +53,7 @@ module.exports =
         filePath = textEditor.getPath()
         fileText = textEditor.getText()
         parameters = []
+
         if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
           parameters.push('--max-line-length', maxLineLength)
         if (ignoreErrorCodes = atom.config.get('linter-flake8.ignoreErrorCodes')).length
@@ -62,9 +65,11 @@ module.exports =
         if (selectErrors = atom.config.get('linter-flake8.selectErrors')).length
           parameters.push('--select', selectErrors.join(','))
         parameters.push('-')
+
         return helpers.exec(atom.config.get('linter-flake8.executablePath'), parameters, stdin: fileText).then (result) ->
           toReturn = []
           regex = /stdin:(\d+):(\d+):\s*(.*?) (.*?):\s*(.*)/g
+
           while (match = regex.exec(result)) isnt null
             line = parseInt(match[1]) or 0
             col = parseInt(match[2]) or 0
