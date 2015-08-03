@@ -1,7 +1,6 @@
 {
   "name": "linter-flake8",
-  "linter-package": true,
-  "main": "./lib/init",
+  "main": "./lib/main",
   "version": "1.5.0",
   "description": "Atom linter plugin for Python, using flake8",
   "repository": {
@@ -9,14 +8,14 @@
     "url": "https://github.com/AtomLinter/linter-flake8"
   },
   "license": "MIT",
-  "engines": {
-    "atom": ">0.50.0"
+  "dependencies": {
+    "atom-linter": "^2.0.0"
   },
-  "dependencies": {},
-  "readme": "",
-  "readmeFilename": "README.md",
-  "bugs": {
-    "url": "https://github.com/AtomLinter/linter-flake8/issues"
-  },
-  "homepage": "https://github.com/AtomLinter/linter-flake8"
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  }
 }
