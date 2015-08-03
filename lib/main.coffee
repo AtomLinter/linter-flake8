@@ -64,14 +64,14 @@ module.exports =
 
         return helpers.exec(atom.config.get('linter-flake8.executablePath'), parameters, stdin: fileText).then (result) ->
           toReturn = []
-          regex = /(\d+):(\d+):\s*(.*?) (.*)/g
+          regex = /(\d+):(\d+):\s((E|W|F|C|N)\d{2,3})\s(.*)/g
 
           while (match = regex.exec(result)) isnt null
             line = parseInt(match[1]) or 0
             col = parseInt(match[2]) or 0
             toReturn.push({
-              type: "Error"
-              text: match[3] + '- ' + match[4]
+              type: match[4] is 'E' then 'Error' else 'Warning'
+              text: match[3] + '- ' + match[5]
               filePath
               range: [[line - 1, col - 1], [line - 1, col]]
             })
