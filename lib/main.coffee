@@ -40,10 +40,6 @@ module.exports =
 
   provideLinter: ->
     helpers = require('atom-linter')
-    regex =
-    '(.*?):(?<line>\\d+):(?<col>\\d+): ' +
-      '(?<message>((?<error>E11|E9)|' +
-      '(?<warning>W|E|F4|F84|N*|C|D|Q|H|I)|F)\\d+ .*?)\r?\n'
 
     provider =
       grammarScopes: ['source.python', 'source.python.django']
@@ -68,16 +64,14 @@ module.exports =
 
         return helpers.exec(atom.config.get('linter-flake8.executablePath'), parameters, stdin: fileText).then (result) ->
           toReturn = []
-          regex = /stdin:(\d+):(\d+):\s*(.*?) (.*?):\s*(.*)/g
+          regex = /(\d+):(\d+):\s*(.*?) (.*)/g
 
           while (match = regex.exec(result)) isnt null
             line = parseInt(match[1]) or 0
             col = parseInt(match[2]) or 0
-            type = match[4]
-            type = 'Error' if type is 'SyntaxError'
             toReturn.push({
-              type: type
-              text: match[3] + '- ' + match[5]
+              type: "Error"
+              text: match[3] + '- ' + match[4]
               filePath
               range: [[line - 1, col - 1], [line - 1, col]]
             })
