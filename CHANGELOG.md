@@ -15,3 +15,4 @@
 ### 1.4.1 - fixed deprecation warnings
 ### 1.4.2 - prepared package to new version of Linter 
 ### 1.5.0 - added Hacking module support, added ability to choose config name
+### 1.6.0 - migrated to new Linter API
