@@ -70,10 +70,9 @@ module.exports =
             line = parseInt(match[1]) or 0
             col = parseInt(match[2]) or 0
             toReturn.push({
-              type: match[4] is 'E' then 'Error' else 'Warning'
+              type: if match[4] is 'E' then 'Error' else 'Warning'
               text: match[3] + '- ' + match[5]
               filePath
               range: [[line - 1, col - 1], [line - 1, col]]
             })
           return toReturn
-
