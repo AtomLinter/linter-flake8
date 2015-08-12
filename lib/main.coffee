@@ -44,7 +44,7 @@ module.exports =
     provider =
       grammarScopes: ['source.python', 'source.python.django']
       scope: 'file' # or 'project'
-      lintOnFly: false # must be false for scope: 'project'
+      lintOnFly: true # must be false for scope: 'project'
       lint: (textEditor) ->
         filePath = textEditor.getPath()
         fileText = textEditor.getText()
