@@ -58,7 +58,7 @@ module.exports =
 
         return helpers.exec(atom.config.get('linter-flake8.executablePath'), parameters, stdin: fileText).then (result) ->
           toReturn = []
-          regex = /(\d+):(\d+):\s((E|W|F|C|N)\d{2,3})\s(.*)/g
+          regex = /(\d+):(\d+):\s((E|W|F|C|N|D)\d{2,3})\s(.*)/g
 
           while (match = regex.exec(result)) isnt null
             line = parseInt(match[1]) or 0
