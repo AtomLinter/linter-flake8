@@ -1,9 +1,47 @@
+exec = (require 'child_process').exec
+
+PYTHON_MAJOR_VERSION = 3
+
+setDetectedPythonMajorVersion = ->
+  python = exec 'python --version', {}, (err, stdout, stderr) ->
+    if not err
+      # Python 2 returns in stderr, Python 3 in stdout. Go figure.
+      versionString = stdout.trim() + stderr.trim()
+
+      # We extract the major version by position. Works for all of:
+      #   - CPython: "Python 3.4.3", "Python 2.7.10"
+      #   - PyPy:    "Python 2.7.9 (295ee98b6928, Jun 02 2015, 16:33:44)
+      #               [PyPy 2.6.0 with GCC 5.1.0]"
+      #   - Jython:  "Jython 2.7.0"
+      majorVersion = parseInt(versionString.slice(7, 8), 10)
+      if majorVersion > 0
+        PYTHON_MAJOR_VERSION = majorVersion
+
+getFlakeBinary = ->
+  # Will be inaccurate during initialization, while the (async) `exec` in
+  # setDetectedPythonMajorVersion didn't finish its callback.
+  # Fine, it will be ready by the time a first lint is requested.
+  if PYTHON_MAJOR_VERSION == 2
+    return atom.config.get('linter-flake8.executablePathPython2')
+  else
+    return atom.config.get('linter-flake8.executablePath')
+
+setDetectedPythonMajorVersion()
+
 module.exports =
   config:
     executablePath:
       type: 'string'
       default: 'flake8'
-      description: 'Full path to binary (e.g. /usr/local/bin/flake8)'
+      description: 'Full path to the binary used when the $PATH/virtualenv ' +
+        'Python is Python *3*. Wrong Python version detected? ' +
+        'Run Atom from a virtualenv!'
+    executablePathPython2:
+      type: 'string'
+      default: 'flake8-python2'
+      description: 'Full path to the binary used when the $PATH/virtualenv ' +
+        'Python is Python *2*. Wrong Python version detected? ' +
+        'Run Atom from a virtualenv!'
     projectConfigFile:
       type: 'string'
       default: ''
@@ -56,7 +94,7 @@ module.exports =
           parameters.push('--config', path.join(atom.project.getPaths()[0], projectConfigFile))
         parameters.push('-')
 
-        return helpers.exec(atom.config.get('linter-flake8.executablePath'), parameters, stdin: fileText).then (result) ->
+        return helpers.exec(getFlakeBinary(), parameters, stdin: fileText).then (result) ->
           toReturn = []
           regex = /(\d+):(\d+):\s((E|W|F|C|N)\d{2,3})\s(.*)/g
 
