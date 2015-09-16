@@ -29,6 +29,9 @@ module.exports =
       items:
         type: 'string'
 
+  activate: ->
+    require('atom-package-deps').install('linter-flake8')
+
   provideLinter: ->
     helpers = require('atom-linter')
     path = require('path')
