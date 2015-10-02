@@ -1,4 +1,4 @@
-### 1.7.2
+### 1.7.0
 
 * Auto installs `linter` package if not installed already
 * Add name to flake8 messages
