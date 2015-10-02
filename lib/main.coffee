@@ -37,6 +37,7 @@ module.exports =
     path = require('path')
 
     provider =
+      name: 'Flake8'
       grammarScopes: ['source.python', 'source.python.django']
       scope: 'file' # or 'project'
       lintOnFly: true # must be false for scope: 'project'
