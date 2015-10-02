@@ -1,3 +1,8 @@
+### 1.7.2
+
+* Auto installs `linter` package if not installed already
+* Add name to flake8 messages
+
 ### 1.0.0 - first working release
 ### 1.0.1 - fixed trailing period causing parsing error in package
 ### 1.0.2 - mistake in repo url
