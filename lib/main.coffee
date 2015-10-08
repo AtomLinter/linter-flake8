@@ -44,6 +44,8 @@ module.exports =
       lint: (textEditor) ->
         filePath = textEditor.getPath()
         fileText = textEditor.getText()
+        process.env.FILE_PATH = filePath
+        
         parameters = []
 
         if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
