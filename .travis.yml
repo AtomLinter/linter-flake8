@@ -1,5 +1,7 @@
 language: objective-c
 
+sudo: false
+
 notifications:
   email:
     on_success: never
