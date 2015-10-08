@@ -1,5 +1,6 @@
 linter-flake8
 =============
+[![Build Status](https://travis-ci.org/AtomLinter/linter-flake8.svg)](https://travis-ci.org/AtomLinter/linter-flake8)
 
 linter-flake8 is a [flake8](https://pypi.python.org/pypi/flake8) provider for [Linter](https://github.com/AtomLinter/Linter).
 
