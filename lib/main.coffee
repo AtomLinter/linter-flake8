@@ -60,7 +60,8 @@ module.exports =
           parameters.push('--config', path.join(atom.project.getPaths()[0], projectConfigFile))
         parameters.push('-')
 
-        return helpers.exec(atom.config.get('linter-flake8.executablePath'), parameters, stdin: fileText).then (result) ->
+        execPath = atom.config.get('linter-flake8.executablePath')
+        return helpers.exec(execPath, parameters, stdin: fileText).then (result) ->
           toReturn = []
           regex = /(\d+):(\d+):\s(([A-Z])\d{2,3})\s+(.*)/g
 
