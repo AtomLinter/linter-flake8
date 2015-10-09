@@ -10,12 +10,12 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
         foundDecorator = false
         for token in tokenizedLine.tokens
           if 'meta.function.python' in token.scopes
-            if token.value == symbol
+            if token.value is symbol
               return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
           if 'meta.function.decorator.python' in token.scopes
             foundDecorator = true
           offset += token.bufferDelta
-        if !foundDecorator
+        if not foundDecorator
           break
         lineNumber += 1
     when 'E125', 'E127', 'E128', 'E131'
@@ -26,9 +26,9 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
       offset = 0
       for token in tokenizedLine.tokens
-        if !token.firstNonWhitespaceIndex
+        if not token.firstNonWhitespaceIndex
           return [[lineNumber, 0], [lineNumber, offset]]
-        if token.firstNonWhitespaceIndex != token.bufferDelta
+        if token.firstNonWhitespaceIndex isnt token.bufferDelta
           return [[lineNumber, 0], [lineNumber, offset + token.firstNonWhitespaceIndex]]
         offset += token.bufferDelta
     when 'E262', 'E265'
@@ -43,7 +43,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
       offset = 0
       for token in tokenizedLine.tokens
-        if token.value == symbol
+        if token.value is symbol
           return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
         offset += token.bufferDelta
     when 'H101'
@@ -70,7 +70,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       offset = 0
       for token in tokenizedLine.tokens
         if 'meta.function-call.python' in token.scopes
-          if token.value == 'locals'
+          if token.value is 'locals'
             return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
         offset += token.bufferDelta
     when 'W291'
