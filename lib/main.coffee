@@ -35,8 +35,18 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       # E262 - inline comment should start with '# '
       # E265 - block comment should start with '# '
       return [[lineNumber, colNumber - 1], [lineNumber, colNumber + 1]]
-    when 'F401', 'F821', 'F841'
+    when 'F401'
       # F401 - 'SYMBOL' imported but unused
+      symbol = /'([^']+)'/.exec(message)[1]
+      while true
+        offset = 0
+        tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+        for token in tokenizedLine.tokens
+          if token.value is symbol
+            return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
+          offset += token.bufferDelta
+        lineNumber += 1
+    when 'F821', 'F841'
       # F821 - undefined name 'SYMBOL'
       # F841 - local variable 'SYMBOL' is assigned but never used
       symbol = /'([^']+)'/.exec(message)[1]
