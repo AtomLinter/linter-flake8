@@ -7,6 +7,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       while true
         offset = 0
         tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+        if tokenizedLine is undefined
+          break
         foundDecorator = false
         for token in tokenizedLine.tokens
           if 'meta.function.python' in token.scopes
@@ -41,6 +43,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       while true
         offset = 0
         tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+        if tokenizedLine is undefined
+          break
         for token in tokenizedLine.tokens
           if token.value is symbol
             return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
