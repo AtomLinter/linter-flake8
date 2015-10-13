@@ -1,6 +1,11 @@
-### 1.8.0
+### 1.9.0
 * Update readme (#94)
 * Add corrected range extraction for many errors (#81)
+
+### 1.8.0
+* Update CHANGELOG.md (#85) and other repository settings (#90, #91, #92)
+* Allow all error classification letters (#88)
+* Specify the working directory to allow custom scripts to work better (#93)
 
 ### 1.7.0
 * Auto installs `linter` package if not installed already
