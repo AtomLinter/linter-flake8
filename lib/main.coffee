@@ -26,6 +26,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       # E128 - continuation line under-indented for visual indent
       # E131 - continuation line unaligned for hanging indent
       tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+      if tokenizedLine is undefined
+        break
       offset = 0
       for token in tokenizedLine.tokens
         if not token.firstNonWhitespaceIndex
@@ -55,6 +57,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       # F841 - local variable 'SYMBOL' is assigned but never used
       symbol = /'([^']+)'/.exec(message)[1]
       tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+      if tokenizedLine is undefined
+        break
       offset = 0
       for token in tokenizedLine.tokens
         if token.value is symbol
@@ -81,6 +85,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
     when 'H501'
       # H501 - do not use locals() for string formatting
       tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+      if tokenizedLine is undefined
+        break
       offset = 0
       for token in tokenizedLine.tokens
         if 'meta.function-call.python' in token.scopes
