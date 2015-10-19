@@ -1,3 +1,6 @@
+### 1.9.1
+* Fix a bug with the new range extraction (#98)
+
 ### 1.9.0
 * Update readme (#94)
 * Add corrected range extraction for many errors (#81)
