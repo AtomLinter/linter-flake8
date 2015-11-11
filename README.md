@@ -25,10 +25,6 @@ for you._
 ### Built-in docstrings check (Optional)
 To include built-in docstrings (pep257) support you will also need to install:
 ```ShellSession
-pip install flake8-pep257
-```
-or:
-```ShellSession
 pip install flake8-docstrings
 ```
 
