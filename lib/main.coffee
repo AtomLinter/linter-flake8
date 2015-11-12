@@ -96,6 +96,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
     when 'W291'
       # W291 - trailing whitespace
       screenLine = textEditor.lineTextForScreenRow(lineNumber)
+      if screenLine is undefined
+        break
       return [[lineNumber, colNumber - 1], [lineNumber, screenLine.length]]
   return [[lineNumber, colNumber - 1], [lineNumber, colNumber]]
 
