@@ -1,3 +1,6 @@
+### 1.9.2
+* Check the return value of an Atom function (#113)
+
 ### 1.9.1
 * Fix a bug with the new range extraction (#98)
 
