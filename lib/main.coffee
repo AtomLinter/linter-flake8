@@ -133,7 +133,7 @@ module.exports =
         type: 'string'
 
   activate: ->
-    require('atom-package-deps').install('linter-flake8')
+    require('atom-package-deps').install()
 
   provideLinter: ->
     helpers = require('atom-linter')
