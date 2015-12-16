@@ -120,8 +120,9 @@ module.exports =
       items:
         type: 'string'
     maxComplexity:
+      description: 'McCabe complexity threshold (`-1` to disable)'
       type: 'integer'
-      default: 10
+      default: -1
     hangClosing:
       type: 'boolean'
       default: false
