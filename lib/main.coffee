@@ -1,3 +1,5 @@
+tokenizedLineForRow = (textEditor, lineNumber) -> textEditor.displayBuffer.tokenizedBuffer.tokenizedLineForRow(lineNumber)
+
 extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
   switch code
     when 'C901'
@@ -6,7 +8,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       symbol = /'(?:[^.]+\.)?([^']+)'/.exec(message)[1]
       while true
         offset = 0
-        tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+        tokenizedLine = tokenizedLineForRow(textEditor, lineNumber)
         if tokenizedLine is undefined
           break
         foundDecorator = false
@@ -25,7 +27,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       # E127 - continuation line over-indented for visual indent
       # E128 - continuation line under-indented for visual indent
       # E131 - continuation line unaligned for hanging indent
-      tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+      tokenizedLine = tokenizedLineForRow(textEditor, lineNumber)
       if tokenizedLine is undefined
         break
       offset = 0
@@ -44,7 +46,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       symbol = /'([^']+)'/.exec(message)[1]
       while true
         offset = 0
-        tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+        tokenizedLine = tokenizedLineForRow(textEditor, lineNumber)
         if tokenizedLine is undefined
           break
         for token in tokenizedLine.tokens
@@ -56,12 +58,12 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       # F821 - undefined name 'SYMBOL'
       # F841 - local variable 'SYMBOL' is assigned but never used
       symbol = /'([^']+)'/.exec(message)[1]
-      tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+      tokenizedLine = tokenizedLineForRow(textEditor, lineNumber)
       if tokenizedLine is undefined
         break
       offset = 0
       for token in tokenizedLine.tokens
-        if token.value is symbol
+        if token.value is symbol and offset >= colNumber - 1
           return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
         offset += token.bufferDelta
     when 'H101'
@@ -84,7 +86,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       return [[lineNumber, colNumber - 1], [lineNumber, colNumber + 4]]
     when 'H501'
       # H501 - do not use locals() for string formatting
-      tokenizedLine = textEditor.tokenizedLineForScreenRow(lineNumber)
+      tokenizedLine = tokenizedLineForRow(textEditor, lineNumber)
       if tokenizedLine is undefined
         break
       offset = 0
@@ -95,7 +97,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
         offset += token.bufferDelta
     when 'W291'
       # W291 - trailing whitespace
-      screenLine = textEditor.lineTextForScreenRow(lineNumber)
+      screenLine = tokenizedLineForRow(textEditor, lineNumber)
       if screenLine is undefined
         break
       return [[lineNumber, colNumber - 1], [lineNumber, screenLine.length]]
