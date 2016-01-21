@@ -44,14 +44,17 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
     when 'F401'
       # F401 - 'SYMBOL' imported but unused
       symbol = /'([^']+)'/.exec(message)[1]
+      foundImport = false
       while true
         offset = 0
         tokenizedLine = tokenizedLineForRow(textEditor, lineNumber)
         if tokenizedLine is undefined
           break
         for token in tokenizedLine.tokens
-          if token.value is symbol
+          if foundImport and token.value is symbol
             return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
+          if token.value is 'import' and 'keyword.control.flow.python' in token.scopes
+            foundImport = true
           offset += token.bufferDelta
         lineNumber += 1
     when 'F821', 'F841'
