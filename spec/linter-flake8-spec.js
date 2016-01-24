@@ -5,6 +5,7 @@ import * as path from 'path';
 const goodPath = path.join(__dirname, 'fixtures', 'good.py');
 const badPath = path.join(__dirname, 'fixtures', 'bad.py');
 const errwarnPath = path.join(__dirname, 'fixtures', 'errwarn.py');
+const fixturePath = path.join(__dirname, 'fixtures');
 
 describe('The flake8 provider for Linter', () => {
   const lint = require('../lib/main').provideLinter().lint;
@@ -118,5 +119,52 @@ describe('The flake8 provider for Linter', () => {
         )
       )
     );
+  });
+
+  describe('executable path', () => {
+    const helpers = require('atom-linter');
+    let editor = null;
+    let execSpy = null;
+    function fakeExec() {
+      return new Promise((resolve) => resolve(''));
+    }
+
+    beforeEach(() => {
+      atom.project.addPath(fixturePath);
+
+      execSpy = spyOn(helpers, 'exec').andCallFake(fakeExec);
+
+      waitsForPromise(() =>
+        atom.workspace.open(badPath).then(openEditor => editor = openEditor)
+      );
+    });
+
+    it('finds executable relative to project', () => {
+      waitsForPromise(() => {
+        atom.config.set('linter-flake8.executablePath',
+          path.join('$PROJECT', 'flake8')
+        );
+        return lint(editor).then(() => {
+          expect(execSpy.mostRecentCall.args[0]).toEqual(
+            path.join(fixturePath, 'flake8')
+          );
+        });
+      });
+    });
+
+    it('finds backup executable', () => {
+      waitsForPromise(() => {
+        const flakeNotFound = path.join('$PROJECT', 'flake8_notfound');
+        const flakeBackup = path.join(fixturePath, 'flake8_backup');
+        atom.config.set('linter-flake8.executablePath',
+          `${flakeNotFound};${flakeBackup}`
+        );
+        return lint(editor).then(() => {
+          expect(execSpy.mostRecentCall.args[0]).toEqual(
+            path.join(fixturePath, 'flake8_backup')
+          );
+        });
+      });
+    });
   });
 });
