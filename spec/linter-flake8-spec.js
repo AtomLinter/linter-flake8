@@ -4,6 +4,7 @@ import * as path from 'path';
 
 const goodPath = path.join(__dirname, 'fixtures', 'good.py');
 const badPath = path.join(__dirname, 'fixtures', 'bad.py');
+const errwarnPath = path.join(__dirname, 'fixtures', 'errwarn.py');
 
 describe('The flake8 provider for Linter', () => {
   const lint = require('../lib/main').provideLinter().lint;
@@ -59,6 +60,54 @@ describe('The flake8 provider for Linter', () => {
         })
       )
     );
+
+    it('checks that the message is an error if flakeErrors is set', () => {
+      atom.config.set('linter-flake8.flakeErrors', true);
+      waitsForPromise(() =>
+        lint(editor).then(messages => {
+          expect(messages[0].type).toBeDefined();
+          expect(messages[0].type).toEqual('Error');
+        })
+      );
+    });
+  });
+
+  describe('checks errwarn.py and', () => {
+    let editor = null;
+
+    beforeEach(() => {
+      waitsForPromise(() =>
+        atom.workspace.open(errwarnPath).then(openEditor => editor = openEditor)
+      );
+    });
+
+    it('finds at least one message', () =>
+      waitsForPromise(() =>
+        lint(editor).then(messages =>
+          expect(messages.length).toBeGreaterThan(0)
+        )
+      )
+    );
+
+    it('finds the message is a warning if pep8ErrorsToWarnings is set', () => {
+      atom.config.set('linter-flake8.pep8ErrorsToWarnings', true);
+      waitsForPromise(() =>
+        lint(editor).then(messages => {
+          expect(messages[0].type).toBeDefined();
+          expect(messages[0].type).toEqual('Warning');
+        })
+      );
+    });
+
+    it('finds the message is an error if pep8ErrorsToWarnings is set', () => {
+      atom.config.set('linter-flake8.pep8ErrorsToWarnings', false);
+      waitsForPromise(() =>
+        lint(editor).then(messages => {
+          expect(messages[0].type).toBeDefined();
+          expect(messages[0].type).toEqual('Error');
+        })
+      );
+    });
   });
 
   it('finds nothing wrong with a valid file', () => {
