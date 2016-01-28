@@ -62,14 +62,13 @@ describe('The flake8 provider for Linter', () => {
     );
 
     it('checks that the message is an error if flakeErrors is set', () => {
-
       atom.config.set('linter-flake8.flakeErrors', true);
       waitsForPromise(() =>
         lint(editor).then(messages => {
           expect(messages[0].type).toBeDefined();
           expect(messages[0].type).toEqual('Error');
         })
-      )
+      );
     });
   });
 
