@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.10.0
+
+*   Fix matching of imports (#142)
+
+*   Allow forcing `flake` warnings to errors and `pep8` errors to
+    warnings (#145)
+
 ## 1.9.3
 
 *   Fix custom highlighting issue (#128)
