@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.10.1
+
+*   Fix an error in F401 handling (#148)
+
 ## 1.10.0
 
 *   Fix matching of imports (#142)
