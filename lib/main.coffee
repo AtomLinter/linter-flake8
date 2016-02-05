@@ -1,4 +1,5 @@
-tokenizedLineForRow = (textEditor, lineNumber) -> textEditor.displayBuffer.tokenizedBuffer.tokenizedLineForRow(lineNumber)
+tokenizedLineForRow = (textEditor, lineNumber) ->
+  textEditor.displayBuffer.tokenizedBuffer.tokenizedLineForRow(lineNumber)
 
 extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
   switch code
@@ -53,7 +54,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
         for token in tokenizedLine.tokens
           if foundImport and token.value is symbol
             return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
-          if token.value is 'import' and 'keyword.control.flow.python' in token.scopes
+          if token.value is 'import' and 'keyword.control.import.python' in token.scopes
             foundImport = true
           offset += token.bufferDelta
         lineNumber += 1
