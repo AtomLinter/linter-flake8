@@ -1,7 +1,7 @@
 {
   "name": "linter-flake8",
   "main": "./lib/main",
-  "version": "1.10.1",
+  "version": "1.11.0",
   "description": "Atom linter plugin for Python, using flake8",
   "license": "MIT",
   "repository": {
