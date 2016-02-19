@@ -1,13 +1,51 @@
-os: osx
+# Project specific config
+matrix:
+  include:
+    - os: linux
+      language: python
+      python: "2.7"
+    - os: linux
+      language: python
+      python: "3.5"
+      env: ATOM_CHANNEL=beta
+    - os: osx
+      language: generic
+      before_install:
+        - brew update
+        # Need a way to check if it's installed already or not...
+        - brew install python
+    - os: osx
+      language: generic
+      before_install:
+        - brew update
+        # Need a way to check if it's installed already or not...
+        - brew install python
+      env: ATOM_CHANNEL=beta
+
+install:
+  - pip install flake8
+
+# Generic setup follows
+script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
 
 notifications:
   email:
     on_success: never
     on_failure: change
 
-before_install:
-  - brew update
-  - brew install python
-  - pip install flake8
+git:
+  depth: 10
 
-script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
+sudo: false
+
+addons:
+  apt:
+    packages:
+    - build-essential
+    - git
+    - libgnome-keyring-dev
+    - fakeroot
+
+branches:
+  only:
+    - master
