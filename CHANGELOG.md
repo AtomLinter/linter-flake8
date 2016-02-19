@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.11.0
+
+*   Expand `~` in paths for *NIX users (#154)
+
 ## 1.10.1
 
 *   Fix an error in F401 handling (#148)
