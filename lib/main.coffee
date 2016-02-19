@@ -178,7 +178,8 @@ module.exports =
           parameters.push('--config', path.join(atom.project.getPaths()[0], projectConfigFile))
         parameters.push('-')
 
-        execPath = atom.config.get('linter-flake8.executablePath')
+        fs = require('fs-plus')
+        execPath = fs.normalize(atom.config.get('linter-flake8.executablePath'))
         pep8warn = atom.config.get('linter-flake8.pep8ErrorsToWarnings')
         flakeerr = atom.config.get('linter-flake8.flakeErrors')
         cwd = path.dirname(textEditor.getPath())
