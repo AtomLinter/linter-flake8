@@ -32,7 +32,7 @@ describe('The flake8 provider for Linter', () => {
     let editor = null;
     beforeEach(() => {
       waitsForPromise(() =>
-        atom.workspace.open(badPath).then(openEditor => editor = openEditor)
+        atom.workspace.open(badPath).then(openEditor => { editor = openEditor; })
       );
     });
 
@@ -77,7 +77,7 @@ describe('The flake8 provider for Linter', () => {
 
     beforeEach(() => {
       waitsForPromise(() =>
-        atom.workspace.open(errwarnPath).then(openEditor => editor = openEditor)
+        atom.workspace.open(errwarnPath).then(openEditor => { editor = openEditor; })
       );
     });
 
