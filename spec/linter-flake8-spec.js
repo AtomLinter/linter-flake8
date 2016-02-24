@@ -135,7 +135,7 @@ describe('The flake8 provider for Linter', () => {
       execSpy = spyOn(helpers, 'exec').andCallFake(fakeExec);
 
       waitsForPromise(() =>
-        atom.workspace.open(badPath).then(openEditor => editor = openEditor)
+        atom.workspace.open(badPath).then(openEditor => { editor = openEditor; })
       );
     });
 
