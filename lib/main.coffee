@@ -114,7 +114,8 @@ module.exports =
     executablePath:
       type: 'string'
       default: 'flake8'
-      description: 'Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). Use `$PROJECT` substitutions for project specific paths e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`'
+      description: 'Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). ' +
+        'Use `$PROJECT` substitutions for project specific paths e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`'
     projectConfigFile:
       type: 'string'
       default: ''
