@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.12.0
+
+*   Add support for $PROJECT substitution (#143)
+
 ## 1.11.0
 
 *   Expand `~` in paths for *NIX users (#154)
