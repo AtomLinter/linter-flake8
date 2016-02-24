@@ -1,5 +1,7 @@
 tokenizedLineForRow = (textEditor, lineNumber) ->
   textEditor.displayBuffer.tokenizedBuffer.tokenizedLineForRow(lineNumber)
+fs = require('fs')
+
 
 extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
   switch code
@@ -112,7 +114,7 @@ module.exports =
     executablePath:
       type: 'string'
       default: 'flake8'
-      description: 'Full path to binary (e.g. /usr/local/bin/flake8)'
+      description: 'Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). Use `$PROJECT` substitutions for project specific paths e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`'
     projectConfigFile:
       type: 'string'
       default: ''
@@ -150,6 +152,16 @@ module.exports =
   activate: ->
     require('atom-package-deps').install()
 
+  getProjDir: (file) ->
+    atom.project.relativizePath(file)[0]
+
+  applySubstitutions: (path, projDir) ->
+    for p in path.split(';')
+      p = p.replace(/\$PROJECT/i, projDir)
+      if fs.existsSync(p)
+        return p
+    return path
+
   provideLinter: ->
     helpers = require('atom-linter')
     path = require('path')
@@ -159,7 +171,7 @@ module.exports =
       grammarScopes: ['source.python', 'source.python.django']
       scope: 'file' # or 'project'
       lintOnFly: true # must be false for scope: 'project'
-      lint: (textEditor) ->
+      lint: (textEditor) =>
         filePath = textEditor.getPath()
         fileText = textEditor.getText()
         parameters = []
@@ -182,6 +194,8 @@ module.exports =
         execPath = fs.normalize(atom.config.get('linter-flake8.executablePath'))
         pep8warn = atom.config.get('linter-flake8.pep8ErrorsToWarnings')
         flakeerr = atom.config.get('linter-flake8.flakeErrors')
+        projDir = @getProjDir(filePath) or path.dirname(filePath)
+        execPath = @applySubstitutions(atom.config.get('linter-flake8.executablePath'), projDir)
         cwd = path.dirname(textEditor.getPath())
         return helpers.exec(execPath, parameters, {stdin: fileText, cwd: cwd}).then (result) ->
           toReturn = []
