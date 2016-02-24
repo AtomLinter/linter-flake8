@@ -152,6 +152,19 @@ describe('The flake8 provider for Linter', () => {
       });
     });
 
+    it('normalizes executable path', () => {
+      waitsForPromise(() => {
+        atom.config.set('linter-flake8.executablePath',
+          path.join(fixturePath, '..', 'fixtures', 'flake8')
+        );
+        return lint(editor).then(() => {
+          expect(execSpy.mostRecentCall.args[0]).toEqual(
+            path.join(fixturePath, 'flake8')
+          );
+        });
+      });
+    });
+
     it('finds backup executable', () => {
       waitsForPromise(() => {
         const flakeNotFound = path.join('$PROJECT', 'flake8_notfound');
