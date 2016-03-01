@@ -192,11 +192,10 @@ module.exports =
         parameters.push('-')
 
         fs = require('fs-plus')
-        execPath = fs.normalize(atom.config.get('linter-flake8.executablePath'))
         pep8warn = atom.config.get('linter-flake8.pep8ErrorsToWarnings')
         flakeerr = atom.config.get('linter-flake8.flakeErrors')
         projDir = @getProjDir(filePath) or path.dirname(filePath)
-        execPath = @applySubstitutions(atom.config.get('linter-flake8.executablePath'), projDir)
+        execPath = fs.normalize(@applySubstitutions(atom.config.get('linter-flake8.executablePath'), projDir))
         cwd = path.dirname(textEditor.getPath())
         return helpers.exec(execPath, parameters, {stdin: fileText, cwd: cwd}).then (result) ->
           toReturn = []
