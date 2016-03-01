@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.12.1
+
+*   Fix a regression in path normalization (#162)
+
 ## 1.12.0
 
 *   Add support for $PROJECT substitution (#143)
