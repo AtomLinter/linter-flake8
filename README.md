@@ -70,7 +70,7 @@ editing the settings in _Atom -> Preferences -> Packages -> linter-flake8_.
 
 ![image](https://cloud.githubusercontent.com/assets/427137/10375451/758567d2-6dad-11e5-9b5e-3e820f4c3d57.png)
 
-Or if you prefere you can use Atom _config.cson_ file _~/.atom/config.cson_
+Or if you prefer you can use Atom _config.cson_ file _~/.atom/config.cson_
 (click _Open Your Config_ in _Atom_ menu).
 
 If you installed `flake8` in a location not in your `$PATH`, the Settings panel
@@ -78,8 +78,12 @@ will let you specify where it lives. For example:
 
 ```cson
 'linter-flake8':
-  'executableDir': '/usr/local/bin/'
+  'executablePath': '/usr/bin/flake8'
 ```
+
+The `executablePath` setting may use `$PROJECT` and `$PROJECT_NAME` for the path or name of the current project, respectively.
+
+
 
 ### Project configuration files
 

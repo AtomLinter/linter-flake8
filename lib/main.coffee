@@ -1,6 +1,7 @@
 tokenizedLineForRow = (textEditor, lineNumber) ->
   textEditor.displayBuffer.tokenizedBuffer.tokenizedLineForRow(lineNumber)
 fs = require('fs')
+path = require('path')
 
 
 extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
@@ -115,7 +116,8 @@ module.exports =
       type: 'string'
       default: 'flake8'
       description: 'Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). ' +
-        'Use `$PROJECT` substitutions for project specific paths e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`'
+        'Use `$PROJECT` or `$PROJECT_NAME` substitutions for project specific paths ' +
+        'e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`'
     projectConfigFile:
       type: 'string'
       default: ''
@@ -156,16 +158,20 @@ module.exports =
   getProjDir: (file) ->
     atom.project.relativizePath(file)[0]
 
-  applySubstitutions: (path, projDir) ->
-    for p in path.split(';')
-      p = p.replace(/\$PROJECT/i, projDir)
+  getProjName: (projDir) ->
+    path.basename(projDir)
+
+  applySubstitutions: (execPath, projDir) ->
+    projectName = @getProjName(projDir)
+    execPath = execPath.replace(/\$PROJECT_NAME/i, projectName)
+    execPath = execPath.replace(/\$PROJECT/i, projDir)
+    for p in execPath.split(';')
       if fs.existsSync(p)
         return p
-    return path
+    return execPath
 
   provideLinter: ->
     helpers = require('atom-linter')
-    path = require('path')
 
     provider =
       name: 'Flake8'
@@ -197,11 +203,13 @@ module.exports =
         projDir = @getProjDir(filePath) or path.dirname(filePath)
         execPath = fs.normalize(@applySubstitutions(atom.config.get('linter-flake8.executablePath'), projDir))
         cwd = path.dirname(textEditor.getPath())
-        return helpers.exec(execPath, parameters, {stdin: fileText, cwd: cwd}).then (result) ->
+        return helpers.exec(execPath, parameters, {stdin: fileText, cwd: cwd, stream: 'both'}).then (result) ->
+          if (result.stderr and result.stderr.length and atom.inDevMode())
+            console.log('flake8 stderr: ' + result.stderr)
           toReturn = []
           regex = /(\d+):(\d+):\s(([A-Z])\d{2,3})\s+(.*)/g
 
-          while (match = regex.exec(result)) isnt null
+          while (match = regex.exec(result.stdout)) isnt null
             line = parseInt(match[1]) or 0
             col = parseInt(match[2]) or 0
             toReturn.push({
