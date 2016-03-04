@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.0
+
+*   $PROJECT_NAME substitution (#167)
+
 ## 1.12.1
 
 *   Fix a regression in path normalization (#162)
