@@ -14,7 +14,7 @@
     "fs-plus": "^2.8.1"
   },
   "devDependencies": {
-    "coffeelint": "^1.14.2",
+    "coffeelint": "^1.15.0",
     "eslint": "^2.2.0",
     "babel-eslint": "^5.0.0",
     "eslint-config-airbnb": "^6.0.2"
