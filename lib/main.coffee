@@ -2,7 +2,7 @@ tokenizedLineForRow = (textEditor, lineNumber) ->
   textEditor.displayBuffer.tokenizedBuffer.tokenizedLineForRow(lineNumber)
 fs = require('fs')
 path = require('path')
-
+{CompositeDisposable} = require 'atom'
 
 extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
   switch code
@@ -118,6 +118,10 @@ module.exports =
       description: 'Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). ' +
         'Use `$PROJECT` or `$PROJECT_NAME` substitutions for project specific paths ' +
         'e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`'
+    disableTimeout:
+      type: 'boolean'
+      default: false
+      description: 'Disable the 10 second execution timeout'
     projectConfigFile:
       type: 'string'
       default: ''
@@ -154,6 +158,13 @@ module.exports =
 
   activate: ->
     require('atom-package-deps').install()
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.config.observe 'linter-flake8.disableTimeout',
+      (disableTimeout) =>
+        @disableTimeout = disableTimeout
+
+  deactivate: ->
+    @subscriptions.dispose()
 
   getProjDir: (file) ->
     atom.project.relativizePath(file)[0]
@@ -203,7 +214,10 @@ module.exports =
         projDir = @getProjDir(filePath) or path.dirname(filePath)
         execPath = fs.normalize(@applySubstitutions(atom.config.get('linter-flake8.executablePath'), projDir))
         cwd = path.dirname(textEditor.getPath())
-        return helpers.exec(execPath, parameters, {stdin: fileText, cwd: cwd, stream: 'both'}).then (result) ->
+        options = {stdin: fileText, cwd: cwd, stream: 'both'}
+        if @disableTimeout
+          options.timeout = Infinity
+        return helpers.exec(execPath, parameters, options).then (result) ->
           if (result.stderr and result.stderr.length and atom.inDevMode())
             console.log('flake8 stderr: ' + result.stderr)
           toReturn = []
