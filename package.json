@@ -15,21 +15,23 @@
   },
   "devDependencies": {
     "coffeelint": "^1.15.0",
-    "eslint": "^2.7.0",
-    "eslint-config-airbnb": "^7.0.0",
-    "eslint-plugin-react": "^4.2.3"
+    "eslint": "^2.8.0",
+    "eslint-config-airbnb-base": "^1.0.4",
+    "eslint-plugin-import": "^1.6.0"
   },
   "package-deps": [
     "linter"
   ],
   "scripts": {
-    "lint": "./node_modules/.bin/coffeelint lib"
+    "lint": "coffeelint lib && eslint spec"
   },
   "eslintConfig": {
     "rules": {
-      "comma-dangle": 0
+      "comma-dangle": 0,
+      "global-require": 0,
+      "import/no-unresolved": [2, {"ignore": ["atom"]}]
     },
-    "extends": "airbnb/base",
+    "extends": "airbnb-base",
     "globals": {
       "atom": true
     },
