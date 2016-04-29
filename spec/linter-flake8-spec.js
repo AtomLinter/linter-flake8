@@ -124,19 +124,31 @@ describe('The flake8 provider for Linter', () => {
   describe('executable path', () => {
     const helpers = require('atom-linter');
     let editor = null;
-    let execSpy = null;
-    function fakeExec() {
-      return new Promise((resolve) => resolve(''));
+    const realExec = helpers.exec;
+    const execParams = [];
+    function fakeExec(...parameters) {
+      execParams.push(parameters);
+      return Promise.resolve('');
     }
 
     beforeEach(() => {
       atom.project.addPath(fixturePath);
 
-      execSpy = spyOn(helpers, 'exec').andCallFake(fakeExec);
+      Object.defineProperty(helpers, 'exec', {
+        enumerable: true,
+        value: fakeExec
+      });
 
       waitsForPromise(() =>
         atom.workspace.open(badPath).then(openEditor => { editor = openEditor; })
       );
+    });
+
+    afterEach(() => {
+      Object.defineProperty(helpers, 'exec', {
+        enumerable: true,
+        value: realExec
+      });
     });
 
     it('finds executable relative to project', () => {
@@ -145,7 +157,7 @@ describe('The flake8 provider for Linter', () => {
           path.join('$PROJECT', 'flake8')
         );
         return lint(editor).then(() => {
-          expect(execSpy.mostRecentCall.args[0]).toEqual(
+          expect(execParams.pop()[0]).toEqual(
             path.join(fixturePath, 'flake8')
           );
         });
@@ -158,7 +170,7 @@ describe('The flake8 provider for Linter', () => {
           path.join('$PROJECT_NAME', 'flake8')
         );
         return lint(editor).then(() => {
-          expect(execSpy.mostRecentCall.args[0]).toEqual(
+          expect(execParams.pop()[0]).toEqual(
             path.join('fixtures', 'flake8')
           );
         });
@@ -171,7 +183,7 @@ describe('The flake8 provider for Linter', () => {
           path.join(fixturePath, '..', 'fixtures', 'flake8')
         );
         return lint(editor).then(() => {
-          expect(execSpy.mostRecentCall.args[0]).toEqual(
+          expect(execParams.pop()[0]).toEqual(
             path.join(fixturePath, 'flake8')
           );
         });
@@ -186,7 +198,7 @@ describe('The flake8 provider for Linter', () => {
           `${flakeNotFound};${flakeBackup}`
         );
         return lint(editor).then(() => {
-          expect(execSpy.mostRecentCall.args[0]).toEqual(
+          expect(execParams.pop()[0]).toEqual(
             path.join(fixturePath, 'flake8_backup')
           );
         });
