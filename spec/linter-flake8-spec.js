@@ -8,7 +8,7 @@ const errwarnPath = path.join(__dirname, 'fixtures', 'errwarn.py');
 const fixturePath = path.join(__dirname, 'fixtures');
 
 describe('The flake8 provider for Linter', () => {
-  const lint = require('../lib/main').provideLinter().lint;
+  const lint = require('../lib/main.coffee').provideLinter().lint;
 
   beforeEach(() => {
     waitsForPromise(() =>
