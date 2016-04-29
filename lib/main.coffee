@@ -1,5 +1,12 @@
 tokenizedLineForRow = (textEditor, lineNumber) ->
-  textEditor.displayBuffer.tokenizedBuffer.tokenizedLineForRow(lineNumber)
+  # Uses non-public parts of the API, liable to break at any time!
+  if (textEditor.hasOwnProperty('displayBuffer'))
+    # Atom < 1.9.0
+    # FIXME: Remove when 1.9.0 is released!
+    tokenBuffer = textEditor.displayBuffer.tokenizedBuffer
+  else
+    tokenBuffer = textEditor.tokenizedBuffer
+  tokenBuffer.tokenizedLineForRow(lineNumber)
 fs = require('fs')
 path = require('path')
 {CompositeDisposable} = require 'atom'
@@ -19,10 +26,10 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
         for token in tokenizedLine.tokens
           if 'meta.function.python' in token.scopes
             if token.value is symbol
-              return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
+              return [[lineNumber, offset], [lineNumber, offset + token.value.length]]
           if 'meta.function.decorator.python' in token.scopes
             foundDecorator = true
-          offset += token.bufferDelta
+          offset += token.value.length
         if not foundDecorator
           break
         lineNumber += 1
@@ -38,9 +45,9 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       for token in tokenizedLine.tokens
         if not token.firstNonWhitespaceIndex
           return [[lineNumber, 0], [lineNumber, offset]]
-        if token.firstNonWhitespaceIndex isnt token.bufferDelta
+        if token.firstNonWhitespaceIndex isnt token.value.length
           return [[lineNumber, 0], [lineNumber, offset + token.firstNonWhitespaceIndex]]
-        offset += token.bufferDelta
+        offset += token.value.length
     when 'E262', 'E265'
       # E262 - inline comment should start with '# '
       # E265 - block comment should start with '# '
@@ -56,10 +63,10 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
           break
         for token in tokenizedLine.tokens
           if foundImport and token.value is symbol
-            return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
+            return [[lineNumber, offset], [lineNumber, offset + token.value.length]]
           if token.value is 'import' and 'keyword.control.import.python' in token.scopes
             foundImport = true
-          offset += token.bufferDelta
+          offset += token.value.length
         lineNumber += 1
     when 'F821', 'F841'
       # F821 - undefined name 'SYMBOL'
@@ -71,8 +78,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       offset = 0
       for token in tokenizedLine.tokens
         if token.value is symbol and offset >= colNumber - 1
-          return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
-        offset += token.bufferDelta
+          return [[lineNumber, offset], [lineNumber, offset + token.value.length]]
+        offset += token.value.length
     when 'H101'
       # H101 - use TODO(NAME)
       return [[lineNumber, colNumber - 1], [lineNumber, colNumber + 3]]
@@ -100,8 +107,8 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
       for token in tokenizedLine.tokens
         if 'meta.function-call.python' in token.scopes
           if token.value is 'locals'
-            return [[lineNumber, offset], [lineNumber, offset + token.bufferDelta]]
-        offset += token.bufferDelta
+            return [[lineNumber, offset], [lineNumber, offset + token.value.length]]
+        offset += token.value.length
     when 'W291'
       # W291 - trailing whitespace
       screenLine = tokenizedLineForRow(textEditor, lineNumber)
