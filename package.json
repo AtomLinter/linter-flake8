@@ -15,14 +15,15 @@
   },
   "devDependencies": {
     "coffeelint": "^1.15.0",
-    "eslint": "^2.8.0",
+    "eslint": "^2.9.0",
     "eslint-config-airbnb-base": "^2.0.0",
-    "eslint-plugin-import": "^1.6.0"
+    "eslint-plugin-import": "^1.6.1"
   },
   "package-deps": [
     "linter"
   ],
   "scripts": {
+    "test": "apm test",
     "lint": "coffeelint lib && eslint spec"
   },
   "eslintConfig": {
