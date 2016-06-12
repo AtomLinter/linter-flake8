@@ -188,6 +188,18 @@ module.exports =
         return p
     return execPath
 
+  getExistingConfigFiles: (configFiles) ->
+    return configFiles
+      .split(/[ ,]+/)
+      .map (configFile) -> path.join(atom.project.getPaths()[0], configFile)
+      .filter (configFilePath) -> (
+        try
+          fs.accessSync(configFilePath)
+          return true
+        catch e
+          return false
+      )
+
   provideLinter: ->
     helpers = require('atom-linter')
 
@@ -201,18 +213,23 @@ module.exports =
         fileText = textEditor.getText()
         parameters = ['--format=default']
 
-        if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
-          parameters.push('--max-line-length', maxLineLength)
-        if (ignoreErrorCodes = atom.config.get('linter-flake8.ignoreErrorCodes')).length
-          parameters.push('--ignore', ignoreErrorCodes.join(','))
-        if maxComplexity = atom.config.get('linter-flake8.maxComplexity')
-          parameters.push('--max-complexity', maxComplexity)
-        if atom.config.get('linter-flake8.hangClosing')
-          parameters.push('--hang-closing')
-        if (selectErrors = atom.config.get('linter-flake8.selectErrors')).length
-          parameters.push('--select', selectErrors.join(','))
-        if (projectConfigFile = atom.config.get('linter-flake8.projectConfigFile'))
-          parameters.push('--config', path.join(atom.project.getPaths()[0], projectConfigFile))
+        if (
+          (projectConfigFile = atom.config.get('linter-flake8.projectConfigFile')) and
+          (existingConfigFiles = @getExistingConfigFiles(projectConfigFile)).length > 0
+        )
+          parameters.push('--config', path.join(atom.project.getPaths()[0], existingConfigFiles[0]))
+        else
+          if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
+            parameters.push('--max-line-length', maxLineLength)
+          if (ignoreErrorCodes = atom.config.get('linter-flake8.ignoreErrorCodes')).length
+            parameters.push('--ignore', ignoreErrorCodes.join(','))
+          if maxComplexity = atom.config.get('linter-flake8.maxComplexity')
+            parameters.push('--max-complexity', maxComplexity)
+          if atom.config.get('linter-flake8.hangClosing')
+            parameters.push('--hang-closing')
+          if (selectErrors = atom.config.get('linter-flake8.selectErrors')).length
+            parameters.push('--select', selectErrors.join(','))
+
         parameters.push('-')
 
         fs = require('fs-plus')
