@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.2
+
+*   Bump minimum atom-linter version
+
 ## 1.13.1
 
 *   Accommodate internal API changes in Atom v1.9.0 ([#188](https://github.com/AtomLinter/linter-flake8/pull/188))
