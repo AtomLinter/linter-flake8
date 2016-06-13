@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.1
+
+*   Accommodate internal API changes in Atom v1.9.0 ([#188](https://github.com/AtomLinter/linter-flake8/pull/188))
+
 ## 1.13.0
 
 *   $PROJECT_NAME substitution (#167)
@@ -62,7 +66,7 @@
 
 ## 1.0.1
 
-*   Fixed trailing period causing parsing error in package
+*   Fixed trailing `.` causing parsing error in package
 
 ## 1.0.2
 
