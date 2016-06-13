@@ -154,8 +154,8 @@ module.exports =
       default: []
       items:
         type: 'string'
-    pep8ErrorsToWarnings:
-      description: 'Convert PEP8 "E" messages to linter warnings'
+    pep8ErrorsToWarnings: # FIXME: Rename to pycodestyle in major release
+      description: 'Convert pycodestyle "E" messages to linter warnings'
       type: 'boolean'
       default: false
     flakeErrors:
@@ -216,7 +216,7 @@ module.exports =
         parameters.push('-')
 
         fs = require('fs-plus')
-        pep8warn = atom.config.get('linter-flake8.pep8ErrorsToWarnings')
+        pycodestyleWarn = atom.config.get('linter-flake8.pep8ErrorsToWarnings')
         flakeerr = atom.config.get('linter-flake8.flakeErrors')
         projDir = @getProjDir(filePath) or path.dirname(filePath)
         execPath = fs.normalize(@applySubstitutions(atom.config.get('linter-flake8.executablePath'), projDir))
@@ -234,7 +234,7 @@ module.exports =
             line = parseInt(match[1]) or 0
             col = parseInt(match[2]) or 0
             toReturn.push({
-              type: if match[4] is 'E' and not pep8warn or match[4] is 'F' and flakeerr then 'Error' else 'Warning'
+              type: if match[4] is 'E' and not pycodestyleWarn or match[4] is 'F' and flakeerr then 'Error' else 'Warning'
               text: match[3] + ' — ' + match[5]
               filePath
               range: extractRange({
