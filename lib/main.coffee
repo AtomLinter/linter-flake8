@@ -188,10 +188,24 @@ module.exports =
         return p
     return execPath
 
-  getExistingConfigFiles: (configFiles) ->
+  getProjectPath: (lintedFile) ->
+    projectPaths = atom.project.getPaths()
+    projectNames = projectPaths
+      .map (projectPath) -> (
+        splittedPath = projectPath.split('/')
+        return splittedPath[splittedPath.length - 1]
+      )
+
+    projectName = projectNames
+      .find((projectName) -> lintedFile.indexOf(projectName) > -1)
+
+    return projectPaths[projectNames.indexOf(projectName)]
+
+
+  getExistingConfigFiles: (configFiles, projectPath) ->
     return configFiles
       .split(/[ ,]+/)
-      .map (configFile) -> path.join(atom.project.getPaths()[0], configFile)
+      .map (configFile) -> path.join(projectPath, configFile)
       .filter (configFilePath) -> (
         try
           fs.accessSync(configFilePath)
@@ -215,7 +229,8 @@ module.exports =
 
         if (
           (projectConfigFile = atom.config.get('linter-flake8.projectConfigFile')) and
-          (existingConfigFiles = @getExistingConfigFiles(projectConfigFile)).length > 0
+          (projectPath = @getProjectPath(filePath)) and
+          (existingConfigFiles = @getExistingConfigFiles(projectConfigFile, projectPath)).length > 0
         )
           parameters.push('--config', path.join(atom.project.getPaths()[0], existingConfigFiles[0]))
         else
