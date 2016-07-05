@@ -199,7 +199,7 @@ module.exports =
       lint: (textEditor) =>
         filePath = textEditor.getPath()
         fileText = textEditor.getText()
-        parameters = []
+        parameters = ['--format=default']
 
         if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
           parameters.push('--max-line-length', maxLineLength)
