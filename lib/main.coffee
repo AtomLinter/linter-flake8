@@ -55,6 +55,7 @@ extractRange = ({code, message, lineNumber, colNumber, textEditor}) ->
     when 'F401'
       # F401 - 'SYMBOL' imported but unused
       symbol = /'([^']+)'/.exec(message)[1]
+      [prefix..., symbol] = symbol.split('.')
       foundImport = false
       while true
         offset = 0
