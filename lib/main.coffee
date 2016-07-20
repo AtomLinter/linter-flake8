@@ -213,6 +213,7 @@ module.exports =
           parameters.push('--select', selectErrors.join(','))
         if (projectConfigFile = atom.config.get('linter-flake8.projectConfigFile'))
           parameters.push('--config', path.join(atom.project.getPaths()[0], projectConfigFile))
+        parameters.push('--stdin-name', filePath)
         parameters.push('-')
 
         fs = require('fs-plus')
