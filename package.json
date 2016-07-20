@@ -9,7 +9,7 @@
     "url": "https://github.com/AtomLinter/linter-flake8"
   },
   "dependencies": {
-    "atom-linter": "^6.0.0",
+    "atom-linter": "^7.0.0",
     "atom-package-deps": "^4.0.1",
     "fs-plus": "^2.8.1"
   },
