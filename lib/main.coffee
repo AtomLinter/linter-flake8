@@ -188,32 +188,6 @@ module.exports =
         return p
     return execPath
 
-  getProjectPath: (lintedFile) ->
-    projectPaths = atom.project.getPaths()
-    projectNames = projectPaths
-      .map (projectPath) -> (
-        splittedPath = projectPath.split('/')
-        return splittedPath[splittedPath.length - 1]
-      )
-
-    projectName = projectNames
-      .find((projectName) -> lintedFile.indexOf(projectName) > -1)
-
-    return projectPaths[projectNames.indexOf(projectName)]
-
-
-  getExistingConfigFiles: (configFiles, projectPath) ->
-    return configFiles
-      .split(/[ ,]+/)
-      .map (configFile) -> path.join(projectPath, configFile)
-      .filter (configFilePath) -> (
-        try
-          fs.accessSync(configFilePath)
-          return true
-        catch e
-          return false
-      )
-
   provideLinter: ->
     helpers = require('atom-linter')
 
@@ -229,10 +203,10 @@ module.exports =
 
         if (
           (projectConfigFile = atom.config.get('linter-flake8.projectConfigFile')) and
-          (projectPath = @getProjectPath(filePath)) and
-          (existingConfigFiles = @getExistingConfigFiles(projectConfigFile, projectPath)).length > 0
+          (projectPath = atom.project.relativizePath(filePath)[0]) and
+          (configFilePath = helpers.findCached(projectPath, projectConfigFile.split(/[ ,]+/)))
         )
-          parameters.push('--config', path.join(atom.project.getPaths()[0], existingConfigFiles[0]))
+          parameters.push('--config', path.join(projectPath, configFilePath))
         else
           if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
             parameters.push('--max-line-length', maxLineLength)
