@@ -1,37 +1,50 @@
-# Project specific config
+### Project specific config ###
 matrix:
   include:
     - os: linux
       language: python
       python: "2.7"
+      before_install:
+        # Installed for linting the project
+        - nvm install node
+
     - os: linux
       language: python
       python: "3.5"
       env: ATOM_CHANNEL=beta
+      before_install:
+        # Installed for linting the project
+        - nvm install node
+
     - os: osx
       language: generic
       before_install:
         - brew update
-        # Need a way to check if it's installed already or not...
-        - brew install python
-    - os: osx
-      language: generic
-      before_install:
-        - brew update
-        # Need a way to check if it's installed already or not...
-        - brew install python
-      env: ATOM_CHANNEL=beta
+        - brew install python || brew upgrade python
+        # Installed for linting the project
+        - brew install node || brew upgrade node
+
+env:
+  global:
+    - ATOM_LINT_WITH_BUNDLED_NODE="false"
 
 install:
   - pip install flake8
 
-# Generic setup follows
+before_script:
+  - flake8 --version
+
+### Generic setup follows ###
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
 
 notifications:
   email:
     on_success: never
     on_failure: change
+
+branches:
+  only:
+    - master
 
 git:
   depth: 10
@@ -45,7 +58,3 @@ addons:
     - git
     - libgnome-keyring-dev
     - fakeroot
-
-branches:
-  only:
-    - master
