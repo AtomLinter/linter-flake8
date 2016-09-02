@@ -123,6 +123,7 @@ describe('The flake8 provider for Linter', () => {
 
   describe('executable path', () => {
     const helpers = require('atom-linter');
+
     let editor = null;
     const realExec = helpers.exec;
     const execParams = [];
