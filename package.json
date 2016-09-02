@@ -28,10 +28,10 @@
   },
   "eslintConfig": {
     "rules": {
-      "comma-dangle": 0,
-      "global-require": 0,
+      "comma-dangle": "off",
+      "global-require": "off",
       "import/no-unresolved": [
-        2,
+        "off",
         {
           "ignore": [
             "atom"
