@@ -233,8 +233,9 @@ module.exports =
           while (match = regex.exec(result.stdout)) isnt null
             line = parseInt(match[1]) or 0
             col = parseInt(match[2]) or 0
+            isErr = match[4] is 'E' and not pycodestyleWarn or match[4] is 'F'
             toReturn.push({
-              type: if match[4] is 'E' and not pycodestyleWarn or match[4] is 'F' and flakeerr then 'Error' else 'Warning'
+              type: if isErr and flakeerr then 'Error' else 'Warning'
               text: match[3] + ' — ' + match[5]
               filePath
               range: extractRange({
