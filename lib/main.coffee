@@ -201,18 +201,24 @@ module.exports =
         fileText = textEditor.getText()
         parameters = ['--format=default']
 
-        if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
-          parameters.push('--max-line-length', maxLineLength)
-        if (ignoreErrorCodes = atom.config.get('linter-flake8.ignoreErrorCodes')).length
-          parameters.push('--ignore', ignoreErrorCodes.join(','))
-        if maxComplexity = atom.config.get('linter-flake8.maxComplexity')
-          parameters.push('--max-complexity', maxComplexity)
-        if atom.config.get('linter-flake8.hangClosing')
-          parameters.push('--hang-closing')
-        if (selectErrors = atom.config.get('linter-flake8.selectErrors')).length
-          parameters.push('--select', selectErrors.join(','))
-        if (projectConfigFile = atom.config.get('linter-flake8.projectConfigFile'))
-          parameters.push('--config', path.join(atom.project.getPaths()[0], projectConfigFile))
+        if (
+          (projectConfigFile = atom.config.get('linter-flake8.projectConfigFile')) and
+          (projectPath = atom.project.relativizePath(filePath)[0]) and
+          (configFilePath = helpers.findCached(projectPath, projectConfigFile.split(/[ ,]+/)))
+        )
+          parameters.push('--config', path.join(projectPath, configFilePath))
+        else
+          if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
+            parameters.push('--max-line-length', maxLineLength)
+          if (ignoreErrorCodes = atom.config.get('linter-flake8.ignoreErrorCodes')).length
+            parameters.push('--ignore', ignoreErrorCodes.join(','))
+          if maxComplexity = atom.config.get('linter-flake8.maxComplexity')
+            parameters.push('--max-complexity', maxComplexity)
+          if atom.config.get('linter-flake8.hangClosing')
+            parameters.push('--hang-closing')
+          if (selectErrors = atom.config.get('linter-flake8.selectErrors')).length
+            parameters.push('--select', selectErrors.join(','))
+
         parameters.push('-')
 
         fs = require('fs-plus')
