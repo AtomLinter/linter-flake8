@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.13.3
+
+*   Better handling of F401 errors ([#218](https://github.com/AtomLinter/linter-flake8/pull/218))
+*   Override any format specified in configuration ([#217](https://github.com/AtomLinter/linter-flake8/pull/217))
+*   Remove references to PEP8 ([#205](https://github.com/AtomLinter/linter-flake8/pull/205))
+*   Dependency updates
+
 ## 1.13.2
 
 *   Bump minimum atom-linter version
