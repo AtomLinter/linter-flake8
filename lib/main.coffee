@@ -207,7 +207,7 @@ module.exports =
           (projectPath = atom.project.relativizePath(filePath)[0]) and
           (configFilePath = helpers.findCached(projectPath, projectConfigFile.split(/[ ,]+/)))
         )
-          parameters.push('--config', path.join(projectPath, configFilePath))
+          parameters.push('--config', configFilePath)
         else
           if maxLineLength = atom.config.get('linter-flake8.maxLineLength')
             parameters.push('--max-line-length', maxLineLength)
