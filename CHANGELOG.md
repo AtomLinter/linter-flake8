@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.4
+
+*   Fixed a bug in how the config file path was being generated ([#244](https://github.com/AtomLinter/linter-flake8/pull/244))
+
 ## 1.13.3
 
 *   Better handling of F401 errors ([#218](https://github.com/AtomLinter/linter-flake8/pull/218))
@@ -29,7 +33,7 @@
 
 ## 1.11.0
 
-*   Expand `~` in paths for *NIX users (#154)
+*   Expand `~` in paths for \*NIX users (#154)
 
 ## 1.10.1
 
@@ -81,7 +85,7 @@
 
 ## 1.0.2
 
-*   Mistake in repo url
+*   Mistake in repo URL
 
 ## 1.0.3
 
@@ -101,13 +105,13 @@
 
 ## 1.0.7
 
-*   Fixed mistakes in README.md pyflakes -> flake8
+*   Fixed mistakes in README.md `pyflakes` -> `flake8`
 
     `flake8` path should be specified in key: `executableDir`
 
 ## 1.0.8
 
-*   Changed repo name to linter-flake8
+*   Changed repo name to `linter-flake8`
 *   Added new options in config
 *   Fixed a typo in config
 
@@ -121,7 +125,7 @@
 
 ## 1.2.0
 
-*   Add maxComplexity and selectErrors options to config
+*   Add `maxComplexity` and `selectErrors` options to config
 
 ## 1.3.0
 
