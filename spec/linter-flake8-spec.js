@@ -33,7 +33,7 @@ describe('The flake8 provider for Linter', () => {
     let editor = null;
     beforeEach(() => {
       waitsForPromise(() =>
-        atom.workspace.open(badPath).then(openEditor => { editor = openEditor; })
+        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; })
       );
     });
 
@@ -47,7 +47,7 @@ describe('The flake8 provider for Linter', () => {
 
     it('verifies that message', () =>
       waitsForPromise(() =>
-        lint(editor).then(messages => {
+        lint(editor).then((messages) => {
           expect(messages[0].type).toBe('Warning');
           expect(messages[0].html).not.toBeDefined();
           expect(messages[0].text).toBe('F821 — undefined name \'asfd\'');
@@ -72,7 +72,7 @@ describe('The flake8 provider for Linter', () => {
 
     beforeEach(() => {
       waitsForPromise(() =>
-        atom.workspace.open(errwarnPath).then(openEditor => { editor = openEditor; })
+        atom.workspace.open(errwarnPath).then((openEditor) => { editor = openEditor; })
       );
     });
 
@@ -129,18 +129,18 @@ describe('The flake8 provider for Linter', () => {
 
       Object.defineProperty(helpers, 'exec', {
         enumerable: true,
-        value: fakeExec
+        value: fakeExec,
       });
 
       waitsForPromise(() =>
-        atom.workspace.open(badPath).then(openEditor => { editor = openEditor; })
+        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; })
       );
     });
 
     afterEach(() => {
       Object.defineProperty(helpers, 'exec', {
         enumerable: true,
-        value: realExec
+        value: realExec,
       });
     });
 

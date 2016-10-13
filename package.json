@@ -28,7 +28,6 @@
   },
   "eslintConfig": {
     "rules": {
-      "comma-dangle": "off",
       "global-require": "off",
       "import/no-unresolved": [
         "off",
@@ -44,7 +43,6 @@
       "atom": true
     },
     "env": {
-      "es6": true,
       "node": true
     }
   },
