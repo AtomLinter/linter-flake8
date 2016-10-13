@@ -14,10 +14,10 @@ describe('The flake8 provider for Linter', () => {
     waitsForPromise(() =>
       Promise.all([
         atom.packages.activatePackage('linter-flake8'),
-        atom.packages.activatePackage('language-python').then(() =>
-          atom.workspace.open(goodPath)
-        )
-      ])
+        atom.packages.activatePackage('language-python'),
+      ]).then(() =>
+        atom.workspace.open(goodPath)
+      )
     );
   });
 
