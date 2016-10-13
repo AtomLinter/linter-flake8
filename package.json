@@ -15,9 +15,9 @@
   },
   "devDependencies": {
     "coffeelint": "^1.15.0",
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb-base": "^7.0.0",
-    "eslint-plugin-import": "^1.14.0"
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb-base": "^8.0.0",
+    "eslint-plugin-import": "^1.16.0"
   },
   "package-deps": [
     "linter"
@@ -28,7 +28,6 @@
   },
   "eslintConfig": {
     "rules": {
-      "comma-dangle": "off",
       "global-require": "off",
       "import/no-unresolved": [
         "off",
@@ -44,7 +43,6 @@
       "atom": true
     },
     "env": {
-      "es6": true,
       "node": true
     }
   },
