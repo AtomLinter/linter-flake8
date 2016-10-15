@@ -2,14 +2,14 @@
 
 import * as path from 'path';
 
-const goodPath = path.join(__dirname, 'fixtures', 'good.py');
-const badPath = path.join(__dirname, 'fixtures', 'bad.py');
-const errwarnPath = path.join(__dirname, 'fixtures', 'errwarn.py');
 const fixturePath = path.join(__dirname, 'fixtures');
+const goodPath = path.join(fixturePath, 'good.py');
+const badPath = path.join(fixturePath, 'bad.py');
+const errwarnPath = path.join(fixturePath, 'errwarn.py');
 const customRange = path.join(fixturePath, 'customRange.py');
 
 describe('The flake8 provider for Linter', () => {
-  const lint = require('../lib/main.coffee').provideLinter().lint;
+  const lint = require('../lib/main.js').provideLinter().lint;
 
   beforeEach(() => {
     waitsForPromise(() =>
@@ -85,8 +85,8 @@ describe('The flake8 provider for Linter', () => {
       )
     );
 
-    it('finds the message is a warning if pep8ErrorsToWarnings is set', () => {
-      atom.config.set('linter-flake8.pep8ErrorsToWarnings', true);
+    it('finds the message is a warning if pycodestyleErrorsToWarnings is set', () => {
+      atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', true);
       waitsForPromise(() =>
         lint(editor).then(messages =>
           expect(messages[0].type).toBe('Warning')
@@ -94,8 +94,8 @@ describe('The flake8 provider for Linter', () => {
       );
     });
 
-    it('finds the message is an error if pep8ErrorsToWarnings is set', () => {
-      atom.config.set('linter-flake8.pep8ErrorsToWarnings', false);
+    it("finds the message is an error if pycodestyleErrorsToWarnings isn't set", () => {
+      atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', false);
       waitsForPromise(() =>
         lint(editor).then(messages =>
           expect(messages[0].type).toBe('Error')
