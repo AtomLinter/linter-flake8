@@ -6,6 +6,7 @@ const goodPath = path.join(__dirname, 'fixtures', 'good.py');
 const badPath = path.join(__dirname, 'fixtures', 'bad.py');
 const errwarnPath = path.join(__dirname, 'fixtures', 'errwarn.py');
 const fixturePath = path.join(__dirname, 'fixtures');
+const customRange = path.join(fixturePath, 'customRange.py');
 
 describe('The flake8 provider for Linter', () => {
   const lint = require('../lib/main.coffee').provideLinter().lint;
@@ -109,6 +110,47 @@ describe('The flake8 provider for Linter', () => {
         lint(editor).then(messages =>
           expect(messages.length).toBe(0)
         )
+      )
+    );
+  });
+
+  it('fixes the range for certain errors', () => {
+    atom.config.set('linter-flake8.maxComplexity', 10);
+    waitsForPromise(() =>
+      atom.workspace.open(customRange).then(editor =>
+        lint(editor).then((messages) => {
+          // importedUnused()
+          const f401 = messages[0];
+          let msgText = "F401 — 'unused_module' imported but unused";
+          expect(f401.type).toBe('Warning');
+          expect(f401.text).toBe(msgText);
+          expect(f401.filePath).toBe(customRange);
+          expect(f401.range).toEqual([[1, 19], [1, 32]]);
+
+          // tooComplex()
+          const c901 = messages[1];
+          msgText = "C901 — 'c901_too_complex' is too complex (13)";
+          expect(c901.type).toBe('Warning');
+          expect(c901.text).toBe(msgText);
+          expect(c901.filePath).toBe(customRange);
+          expect(c901.range).toEqual([[4, 4], [4, 20]]);
+
+          // noLocalsString()
+          const h501 = messages[2];
+          msgText = 'H501 — Do not use locals() for string formatting';
+          expect(h501.type).toBe('Warning');
+          expect(h501.text).toBe(msgText);
+          expect(h501.filePath).toBe(customRange);
+          expect(h501.range).toEqual([[21, 32], [21, 38]]);
+
+          // H201
+          const h201 = messages[3];
+          msgText = "H201 — no 'except:' at least use 'except Exception:'";
+          expect(h201.type).toBe('Warning');
+          expect(h201.text).toBe(msgText);
+          expect(h201.filePath).toBe(customRange);
+          expect(h201.range).toEqual([[22, 4], [22, 11]]);
+        })
       )
     );
   });
