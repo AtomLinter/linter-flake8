@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+*   Show a nicer message when an invalid point is encountered ([#260](https://github.com/AtomLinter/linter-flake8/pull/260))
+
 ## 2.0.0
 
 *   Rename `pep8ErrorsToWarnings` to `pycodestyleErrorsToWarnings` (*Breaking*)
