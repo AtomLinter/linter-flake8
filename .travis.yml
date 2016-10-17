@@ -30,6 +30,7 @@ env:
 
 install:
   - pip install flake8
+  - pip install hacking
 
 before_script:
   - flake8 --version

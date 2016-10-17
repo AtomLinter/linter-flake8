@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0
+
+*   Rename `pep8ErrorsToWarnings` to `pycodestyleErrorsToWarnings` (*Breaking*)
+*   Rewrite in ES2017 ([#255](https://github.com/AtomLinter/linter-flake8/pull/255))
+*   Fix several minor bugs
+*   Update dependencies
+
 ## 1.13.4
 
 *   Fixed a bug in how the config file path was being generated ([#244](https://github.com/AtomLinter/linter-flake8/pull/244))
