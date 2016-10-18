@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2
+
+*   Add a workaround for the improper E999 positioning ([#262](https://github.com/AtomLinter/linter-flake8/pull/262))
+
 ## 2.0.1
 
 *   Show a nicer message when an invalid point is encountered ([#260](https://github.com/AtomLinter/linter-flake8/pull/260))
