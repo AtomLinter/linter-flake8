@@ -26,27 +26,27 @@ describe('The flake8 provider for Linter', () => {
   });
 
   it('should be in the packages list', () =>
-    expect(atom.packages.isPackageLoaded('linter-flake8')).toBe(true)
+    expect(atom.packages.isPackageLoaded('linter-flake8')).toBe(true),
   );
 
   it('should be an active package', () =>
-    expect(atom.packages.isPackageActive('linter-flake8')).toBe(true)
+    expect(atom.packages.isPackageActive('linter-flake8')).toBe(true),
   );
 
   describe('checks bad.py and', () => {
     let editor = null;
     beforeEach(() => {
       waitsForPromise(() =>
-        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; })
+        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; }),
       );
     });
 
     it('finds at least one message', () =>
       waitsForPromise(() =>
         lint(editor).then(messages =>
-          expect(messages.length).toBeGreaterThan(0)
-        )
-      )
+          expect(messages.length).toBeGreaterThan(0),
+        ),
+      ),
     );
 
     it('verifies that message', () =>
@@ -57,16 +57,16 @@ describe('The flake8 provider for Linter', () => {
           expect(messages[0].text).toBe('F821 — undefined name \'asfd\'');
           expect(messages[0].filePath).toBe(badPath);
           expect(messages[0].range).toEqual([[0, 0], [0, 4]]);
-        })
-      )
+        }),
+      ),
     );
 
     it('checks that the message is an error if flakeErrors is set', () => {
       atom.config.set('linter-flake8.flakeErrors', true);
       waitsForPromise(() =>
         lint(editor).then(messages =>
-          expect(messages[0].type).toBe('Error')
-        )
+          expect(messages[0].type).toBe('Error'),
+        ),
       );
     });
   });
@@ -76,24 +76,24 @@ describe('The flake8 provider for Linter', () => {
 
     beforeEach(() => {
       waitsForPromise(() =>
-        atom.workspace.open(errwarnPath).then((openEditor) => { editor = openEditor; })
+        atom.workspace.open(errwarnPath).then((openEditor) => { editor = openEditor; }),
       );
     });
 
     it('finds at least one message', () =>
       waitsForPromise(() =>
         lint(editor).then(messages =>
-          expect(messages.length).toBeGreaterThan(0)
-        )
-      )
+          expect(messages.length).toBeGreaterThan(0),
+        ),
+      ),
     );
 
     it('finds the message is a warning if pycodestyleErrorsToWarnings is set', () => {
       atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', true);
       waitsForPromise(() =>
         lint(editor).then(messages =>
-          expect(messages[0].type).toBe('Warning')
-        )
+          expect(messages[0].type).toBe('Warning'),
+        ),
       );
     });
 
@@ -101,8 +101,8 @@ describe('The flake8 provider for Linter', () => {
       atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', false);
       waitsForPromise(() =>
         lint(editor).then(messages =>
-          expect(messages[0].type).toBe('Error')
-        )
+          expect(messages[0].type).toBe('Error'),
+        ),
       );
     });
   });
@@ -111,9 +111,9 @@ describe('The flake8 provider for Linter', () => {
     waitsForPromise(() =>
       atom.workspace.open(goodPath).then(editor =>
         lint(editor).then(messages =>
-          expect(messages.length).toBe(0)
-        )
-      )
+          expect(messages.length).toBe(0),
+        ),
+      ),
     );
   });
 
@@ -153,8 +153,8 @@ describe('The flake8 provider for Linter', () => {
           expect(h201.text).toBe(msgText);
           expect(h201.filePath).toBe(customRange);
           expect(h201.range).toEqual([[22, 4], [22, 11]]);
-        })
-      )
+        }),
+      ),
     );
   });
 
@@ -178,7 +178,7 @@ describe('The flake8 provider for Linter', () => {
       });
 
       waitsForPromise(() =>
-        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; })
+        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; }),
       );
     });
 
@@ -191,34 +191,34 @@ describe('The flake8 provider for Linter', () => {
 
     it('finds executable relative to project', () => {
       atom.config.set('linter-flake8.executablePath',
-        path.join('$PROJECT', 'flake8')
+        path.join('$PROJECT', 'flake8'),
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8'))
-        )
+          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8')),
+        ),
       );
     });
 
     it('finds executable using project name', () => {
       atom.config.set('linter-flake8.executablePath',
-        path.join('$PROJECT_NAME', 'flake8')
+        path.join('$PROJECT_NAME', 'flake8'),
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join('fixtures', 'flake8'))
-        )
+          expect(execParams.pop()[0]).toBe(path.join('fixtures', 'flake8')),
+        ),
       );
     });
 
     it('normalizes executable path', () => {
       atom.config.set('linter-flake8.executablePath',
-        path.join(fixturePath, '..', 'fixtures', 'flake8')
+        path.join(fixturePath, '..', 'fixtures', 'flake8'),
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8'))
-        )
+          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8')),
+        ),
       );
     });
 
@@ -226,12 +226,12 @@ describe('The flake8 provider for Linter', () => {
       const flakeNotFound = path.join('$PROJECT', 'flake8_notfound');
       const flakeBackup = path.join(fixturePath, 'flake8_backup');
       atom.config.set('linter-flake8.executablePath',
-        `${flakeNotFound};${flakeBackup}`
+        `${flakeNotFound};${flakeBackup}`,
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8_backup'))
-        )
+          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8_backup')),
+        ),
       );
     });
   });
