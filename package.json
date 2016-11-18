@@ -11,6 +11,7 @@
   "engines": {
     "atom": ">=1.9.0 <2.0.0"
   },
+  "activationHooks": ["language-python:grammar-used"],
   "configSchema": {
     "executablePath": {
       "type": "string",

@@ -12,14 +12,17 @@ describe('The flake8 provider for Linter', () => {
   const lint = require('../lib/main.js').provideLinter().lint;
 
   beforeEach(() => {
+    // Info about this beforeEach() implementation:
+    // https://github.com/AtomLinter/Meta/issues/15
+    const activationPromise =
+      atom.packages.activatePackage('linter-flake8');
+
     waitsForPromise(() =>
-      Promise.all([
-        atom.packages.activatePackage('linter-flake8'),
-        atom.packages.activatePackage('language-python'),
-      ]).then(() =>
-        atom.workspace.open(goodPath)
-      )
-    );
+      atom.packages.activatePackage('language-python').then(() =>
+        atom.workspace.open(goodPath)));
+
+    atom.packages.triggerDeferredActivationHooks();
+    waitsForPromise(() => activationPromise);
   });
 
   it('should be in the packages list', () =>
