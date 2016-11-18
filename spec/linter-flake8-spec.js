@@ -19,9 +19,7 @@ describe('The flake8 provider for Linter', () => {
 
     waitsForPromise(() =>
       atom.packages.activatePackage('language-python').then(() =>
-        waitsForPromise(() =>
-          atom.workspace.open(goodPath))));
-
+        atom.workspace.open(goodPath)));
 
     atom.packages.triggerDeferredActivationHooks();
     waitsForPromise(() => activationPromise);
