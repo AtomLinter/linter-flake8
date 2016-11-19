@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2.1.0](https://github.com/AtomLinter/linter-flake8/tree/v2.1.0) (2016-11-18)
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.0.2...v2.1.0)
+
+**Implemented enhancements:**
+
+- Handle errors more gracefully [\#277](https://github.com/AtomLinter/linter-flake8/pull/277) ([Arcanemagus](https://github.com/Arcanemagus))
+- Improve Atom startup time [\#276](https://github.com/AtomLinter/linter-flake8/pull/276) ([walles](https://github.com/walles))
+- Update eslint-config-airbnb-base to the latest version 🚀 [\#272](https://github.com/AtomLinter/linter-flake8/pull/272) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Move to a generated changelog [\#264](https://github.com/AtomLinter/linter-flake8/pull/264) ([Arcanemagus](https://github.com/Arcanemagus))
+
 ## [v2.0.2](https://github.com/AtomLinter/linter-flake8/tree/v2.0.2) (2016-10-18)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.0.1...v2.0.2)
 
