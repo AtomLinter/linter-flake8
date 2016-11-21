@@ -1,6 +1,14 @@
 # Change Log
 
-## [v2.1.0](https://github.com/AtomLinter/linter-flake8/tree/v2.1.0) (2016-11-18)
+## [v2.1.1](https://github.com/AtomLinter/linter-flake8/tree/v2.1.1) (2016-11-21)
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.0...v2.1.1)
+
+**Fixed bugs:**
+
+- activationHooks breaks package loading [\#280](https://github.com/AtomLinter/linter-flake8/issues/280)
+- Activate on more grammars [\#281](https://github.com/AtomLinter/linter-flake8/pull/281) ([walles](https://github.com/walles))
+
+## [v2.1.0](https://github.com/AtomLinter/linter-flake8/tree/v2.1.0) (2016-11-19)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.0.2...v2.1.0)
 
 **Implemented enhancements:**
