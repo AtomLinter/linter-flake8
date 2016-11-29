@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.1.2](https://github.com/AtomLinter/linter-flake8/tree/v2.1.2) (2016-11-28)
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.1...v2.1.2)
+
+**Implemented enhancements:**
+
+- Add activationHooks for django-atom [\#287](https://github.com/AtomLinter/linter-flake8/pull/287) ([jjlorenzo](https://github.com/jjlorenzo))
+
 ## [v2.1.1](https://github.com/AtomLinter/linter-flake8/tree/v2.1.1) (2016-11-21)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.0...v2.1.1)
 
