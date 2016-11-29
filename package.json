@@ -14,6 +14,7 @@
   "activationHooks": [
     "language-python:grammar-used",
     "MagicPython:grammar-used",
+    "django-atom:grammar-used",
     "atom-django:grammar-used"
   ],
   "configSchema": {
