@@ -200,6 +200,21 @@ describe('The flake8 provider for Linter', () => {
       );
     });
 
+    it('finds executable relative to projects', () => {
+      const paths = [
+        path.join('$project', 'null'),
+        path.join('$pRoJeCt', 'flake1'),
+        path.join('$PrOjEcT', 'flake2'),
+        path.join('$PROJECT', 'flake8'),
+      ].join(';');
+      atom.config.set('linter-flake8.executablePath', paths);
+      waitsForPromise(() =>
+        lint(editor).then(() =>
+          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8')),
+        ),
+      );
+    });
+
     it('finds executable using project name', () => {
       atom.config.set('linter-flake8.executablePath',
         path.join('$PROJECT_NAME', 'flake8'),
@@ -207,6 +222,27 @@ describe('The flake8 provider for Linter', () => {
       waitsForPromise(() =>
         lint(editor).then(() =>
           expect(execParams.pop()[0]).toBe(path.join('fixtures', 'flake8')),
+        ),
+      );
+    });
+
+    it('finds executable using project names', () => {
+      const paths = [
+        path.join('$project_name', 'null'),
+        path.join('$pRoJeCt_NaMe', 'flake1'),
+        path.join('$PrOjEcT_nAmE', 'flake2'),
+        path.join('$PROJECT_NAME', 'flake8'),
+      ].join(';');
+      const correct = [
+        path.join('fixtures', 'null'),
+        path.join('fixtures', 'flake1'),
+        path.join('fixtures', 'flake2'),
+        path.join('fixtures', 'flake8'),
+      ].join(';');
+      atom.config.set('linter-flake8.executablePath', paths);
+      waitsForPromise(() =>
+        lint(editor).then(() =>
+          expect(execParams.pop()[0]).toBe(correct),
         ),
       );
     });
