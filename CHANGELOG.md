@@ -1,6 +1,14 @@
 # Change Log
 
-## [v2.1.2](https://github.com/AtomLinter/linter-flake8/tree/v2.1.2) (2016-11-28)
+## [v2.1.3](https://github.com/AtomLinter/linter-flake8/tree/v2.1.3) (2016-11-30)
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.2...v2.1.3)
+
+**Fixed bugs:**
+
+- Multiple $PROJECT not work [\#290](https://github.com/AtomLinter/linter-flake8/issues/290)
+- Added "g" flag to project path replacement [\#291](https://github.com/AtomLinter/linter-flake8/pull/291) ([hiroaki-yamamoto](https://github.com/hiroaki-yamamoto))
+
+## [v2.1.2](https://github.com/AtomLinter/linter-flake8/tree/v2.1.2) (2016-11-29)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.1...v2.1.2)
 
 **Implemented enhancements:**
