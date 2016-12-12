@@ -4,39 +4,29 @@ matrix:
     - os: linux
       language: python
       python: "2.7"
-      before_install:
-        # Installed for linting the project
-        - nvm install node
 
     - os: linux
       language: python
       python: "3.5"
       env: ATOM_CHANNEL=beta
-      before_install:
-        # Installed for linting the project
-        - nvm install node
 
     - os: osx
       language: generic
       before_install:
         - brew update
         - brew install python || brew upgrade python
-        # Installed for linting the project
-        - brew install node || brew upgrade node
-
-env:
-  global:
-    - ATOM_LINT_WITH_BUNDLED_NODE="false"
 
 install:
   - pip install flake8
-  - pip install hacking
 
 before_script:
   - flake8 --version
 
 ### Generic setup follows ###
-script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
+script:
+  - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
+  - chmod u+x build-package.sh
+  - ./build-package.sh
 
 notifications:
   email:
