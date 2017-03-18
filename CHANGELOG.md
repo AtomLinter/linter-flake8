@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2.1.5](https://github.com/AtomLinter/linter-flake8/tree/v2.1.5) (2017-03-18)
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.4...v2.1.5)
+
+**Implemented enhancements:**
+
+- Update to eslint-config-airbnb-base v11.1.1 [\#368](https://github.com/AtomLinter/linter-flake8/pull/368) ([Arcanemagus](https://github.com/Arcanemagus))
+- Update CI configuration [\#367](https://github.com/AtomLinter/linter-flake8/pull/367) ([Arcanemagus](https://github.com/Arcanemagus))
+- Update fs-plus to the latest version 🚀 [\#361](https://github.com/AtomLinter/linter-flake8/pull/361) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update atom-linter to the latest version 🚀 [\#349](https://github.com/AtomLinter/linter-flake8/pull/349) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+
 ## [v2.1.4](https://github.com/AtomLinter/linter-flake8/tree/v2.1.4) (2016-12-12)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.3...v2.1.4)
 
@@ -9,10 +19,10 @@
 
 **Fixed bugs:**
 
+- Atom blocked editing files with plenty of errors [\#295](https://github.com/AtomLinter/linter-flake8/issues/295)
 - Underline mispositioned when attribute name matches unused import [\#268](https://github.com/AtomLinter/linter-flake8/issues/268)
 - Update CI configuration [\#308](https://github.com/AtomLinter/linter-flake8/pull/308) ([Arcanemagus](https://github.com/Arcanemagus))
 - Remove custom range fixers [\#304](https://github.com/AtomLinter/linter-flake8/pull/304) ([Arcanemagus](https://github.com/Arcanemagus))
-- Atom blocked editing files with plenty of errors [\#295](https://github.com/AtomLinter/linter-flake8/issues/295)
 
 ## [v2.1.3](https://github.com/AtomLinter/linter-flake8/tree/v2.1.3) (2016-11-30)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.2...v2.1.3)
