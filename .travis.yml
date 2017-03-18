@@ -7,14 +7,8 @@ matrix:
 
     - os: linux
       language: python
-      python: "3.5"
+      python: "3.6"
       env: ATOM_CHANNEL=beta
-
-    - os: osx
-      language: generic
-      before_install:
-        - brew update
-        - brew install python || brew upgrade python
 
 install:
   - pip install flake8
@@ -36,6 +30,7 @@ notifications:
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 
 git:
   depth: 10
