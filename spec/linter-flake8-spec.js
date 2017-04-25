@@ -1,11 +1,11 @@
 'use babel';
 
-import * as path from 'path';
+import { join } from 'path';
 
-const fixturePath = path.join(__dirname, 'fixtures');
-const goodPath = path.join(fixturePath, 'good.py');
-const badPath = path.join(fixturePath, 'bad.py');
-const errwarnPath = path.join(fixturePath, 'errwarn.py');
+const fixturePath = join(__dirname, 'fixtures');
+const goodPath = join(fixturePath, 'good.py');
+const badPath = join(fixturePath, 'bad.py');
+const errwarnPath = join(fixturePath, 'errwarn.py');
 
 describe('The flake8 provider for Linter', () => {
   const lint = require('../lib/main.js').provideLinter().lint;
@@ -149,53 +149,53 @@ describe('The flake8 provider for Linter', () => {
 
     it('finds executable relative to project', () => {
       atom.config.set('linter-flake8.executablePath',
-        path.join('$PROJECT', 'flake8'),
+        join('$PROJECT', 'flake8'),
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8')),
+          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8')),
         ),
       );
     });
 
     it('finds executable relative to projects', () => {
       const paths = [
-        path.join('$project', 'null'),
-        path.join('$pRoJeCt', 'flake1'),
-        path.join('$PrOjEcT', 'flake2'),
-        path.join('$PROJECT', 'flake8'),
+        join('$project', 'null'),
+        join('$pRoJeCt', 'flake1'),
+        join('$PrOjEcT', 'flake2'),
+        join('$PROJECT', 'flake8'),
       ].join(';');
       atom.config.set('linter-flake8.executablePath', paths);
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8')),
+          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8')),
         ),
       );
     });
 
     it('finds executable using project name', () => {
       atom.config.set('linter-flake8.executablePath',
-        path.join('$PROJECT_NAME', 'flake8'),
+        join('$PROJECT_NAME', 'flake8'),
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join('fixtures', 'flake8')),
+          expect(execParams.pop()[0]).toBe(join('fixtures', 'flake8')),
         ),
       );
     });
 
     it('finds executable using project names', () => {
       const paths = [
-        path.join('$project_name', 'null'),
-        path.join('$pRoJeCt_NaMe', 'flake1'),
-        path.join('$PrOjEcT_nAmE', 'flake2'),
-        path.join('$PROJECT_NAME', 'flake8'),
+        join('$project_name', 'null'),
+        join('$pRoJeCt_NaMe', 'flake1'),
+        join('$PrOjEcT_nAmE', 'flake2'),
+        join('$PROJECT_NAME', 'flake8'),
       ].join(';');
       const correct = [
-        path.join('fixtures', 'null'),
-        path.join('fixtures', 'flake1'),
-        path.join('fixtures', 'flake2'),
-        path.join('fixtures', 'flake8'),
+        join('fixtures', 'null'),
+        join('fixtures', 'flake1'),
+        join('fixtures', 'flake2'),
+        join('fixtures', 'flake8'),
       ].join(';');
       atom.config.set('linter-flake8.executablePath', paths);
       waitsForPromise(() =>
@@ -207,24 +207,24 @@ describe('The flake8 provider for Linter', () => {
 
     it('normalizes executable path', () => {
       atom.config.set('linter-flake8.executablePath',
-        path.join(fixturePath, '..', 'fixtures', 'flake8'),
+        join(fixturePath, '..', 'fixtures', 'flake8'),
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8')),
+          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8')),
         ),
       );
     });
 
     it('finds backup executable', () => {
-      const flakeNotFound = path.join('$PROJECT', 'flake8_notfound');
-      const flakeBackup = path.join(fixturePath, 'flake8_backup');
+      const flakeNotFound = join('$PROJECT', 'flake8_notfound');
+      const flakeBackup = join(fixturePath, 'flake8_backup');
       atom.config.set('linter-flake8.executablePath',
         `${flakeNotFound};${flakeBackup}`,
       );
       waitsForPromise(() =>
         lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(path.join(fixturePath, 'flake8_backup')),
+          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8_backup')),
         ),
       );
     });
