@@ -6,6 +6,7 @@ const fixturePath = join(__dirname, 'fixtures');
 const goodPath = join(fixturePath, 'good.py');
 const badPath = join(fixturePath, 'bad.py');
 const errwarnPath = join(fixturePath, 'errwarn.py');
+const builtinsPath = join(fixturePath, 'builtins.py');
 
 describe('The flake8 provider for Linter', () => {
   const lint = require('../lib/main.js').provideLinter().lint;
@@ -226,6 +227,58 @@ describe('The flake8 provider for Linter', () => {
         lint(editor).then(() =>
           expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8_backup')),
         ),
+      );
+    });
+  });
+
+  describe('works with defining builtins', () => {
+    let editor;
+
+    beforeEach(() => {
+      waitsForPromise(() =>
+        atom.workspace.open(builtinsPath).then((openEditor) => { editor = openEditor; }),
+      );
+    });
+
+    it('shows all warnings when the setting is blank', () => {
+      waitsForPromise(() =>
+        lint(editor).then((messages) => {
+          expect(messages.length).toBe(2);
+
+          expect(messages[0].type).toBe('Warning');
+          expect(messages[0].html).not.toBeDefined();
+          expect(messages[0].text).toBe('F821 — undefined name \'bar\'');
+          expect(messages[0].filePath).toBe(builtinsPath);
+          expect(messages[0].range).toEqual([[0, 6], [0, 9]]);
+
+          expect(messages[1].type).toBe('Warning');
+          expect(messages[1].html).not.toBeDefined();
+          expect(messages[1].text).toBe('F821 — undefined name \'foo_bar\'');
+          expect(messages[1].filePath).toBe(builtinsPath);
+          expect(messages[1].range).toEqual([[1, 9], [1, 16]]);
+        }),
+      );
+    });
+
+    it('works with a single builtin', () => {
+      atom.config.set('linter-flake8.builtins', ['bar']);
+      waitsForPromise(() =>
+        lint(editor).then((messages) => {
+          expect(messages.length).toBe(1);
+
+          expect(messages[0].type).toBe('Warning');
+          expect(messages[0].html).not.toBeDefined();
+          expect(messages[0].text).toBe('F821 — undefined name \'foo_bar\'');
+          expect(messages[0].filePath).toBe(builtinsPath);
+          expect(messages[0].range).toEqual([[1, 9], [1, 16]]);
+        }),
+      );
+    });
+
+    it('works with multiple builtins', () => {
+      atom.config.set('linter-flake8.builtins', ['bar', 'foo_bar']);
+      waitsForPromise(() =>
+        lint(editor).then(messages => expect(messages.length).toBe(0)),
       );
     });
   });
