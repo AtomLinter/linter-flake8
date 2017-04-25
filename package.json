@@ -23,11 +23,6 @@
       "default": "flake8",
       "description": "Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). Use `$PROJECT` or `$PROJECT_NAME` substitutions for project specific paths e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`"
     },
-    "disableTimeout": {
-      "type": "boolean",
-      "default": false,
-      "description": "Disable the 10 second execution timeout"
-    },
     "projectConfigFile": {
       "type": "array",
       "default": [],
