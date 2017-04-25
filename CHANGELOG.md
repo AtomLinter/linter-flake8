@@ -1,5 +1,19 @@
 # Change Log
 
+## [v2.2.0](https://github.com/AtomLinter/linter-flake8/tree/v2.2.0) (2017-04-25)
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.5...v2.2.0)
+
+**Implemented enhancements:**
+
+- Max Line Length default value is 79 [\#379](https://github.com/AtomLinter/linter-flake8/issues/379)
+- Builtins support? [\#163](https://github.com/AtomLinter/linter-flake8/issues/163)
+- Defer package dependency check [\#413](https://github.com/AtomLinter/linter-flake8/pull/413) ([Arcanemagus](https://github.com/Arcanemagus))
+- Uniquely spawn lint runs [\#412](https://github.com/AtomLinter/linter-flake8/pull/412) ([Arcanemagus](https://github.com/Arcanemagus))
+- Asyncify the specs [\#411](https://github.com/AtomLinter/linter-flake8/pull/411) ([Arcanemagus](https://github.com/Arcanemagus))
+- Add support for builtins [\#410](https://github.com/AtomLinter/linter-flake8/pull/410) ([Arcanemagus](https://github.com/Arcanemagus))
+- Update atom-linter to the latest version 🚀 [\#393](https://github.com/AtomLinter/linter-flake8/pull/393) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update default line-length value [\#381](https://github.com/AtomLinter/linter-flake8/pull/381) ([Arcanemagus](https://github.com/Arcanemagus))
+
 ## [v2.1.5](https://github.com/AtomLinter/linter-flake8/tree/v2.1.5) (2017-03-18)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.4...v2.1.5)
 
