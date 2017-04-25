@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.2.1](https://github.com/AtomLinter/linter-flake8/tree/v2.2.1) (2017-04-25)
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.2.0...v2.2.1)
+
+**Fixed bugs:**
+
+- Report when flake8 crashes! [\#414](https://github.com/AtomLinter/linter-flake8/pull/414) ([Arcanemagus](https://github.com/Arcanemagus))
+
 ## [v2.2.0](https://github.com/AtomLinter/linter-flake8/tree/v2.2.0) (2017-04-25)
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.5...v2.2.0)
 
