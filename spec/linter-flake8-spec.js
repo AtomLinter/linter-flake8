@@ -1,6 +1,9 @@
 'use babel';
 
 import { join } from 'path';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { beforeEach, it } from 'jasmine-fix';
+// NOTE: If using fit you must add it to the list above!
 
 const fixturePath = join(__dirname, 'fixtures');
 const goodPath = join(fixturePath, 'good.py');
@@ -11,18 +14,16 @@ const builtinsPath = join(fixturePath, 'builtins.py');
 describe('The flake8 provider for Linter', () => {
   const lint = require('../lib/main.js').provideLinter().lint;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     // Info about this beforeEach() implementation:
     // https://github.com/AtomLinter/Meta/issues/15
-    const activationPromise =
-      atom.packages.activatePackage('linter-flake8');
+    const activationPromise = atom.packages.activatePackage('linter-flake8');
 
-    waitsForPromise(() =>
-      atom.packages.activatePackage('language-python').then(() =>
-        atom.workspace.open(goodPath)));
+    await atom.packages.activatePackage('language-python');
+    await atom.workspace.open(goodPath);
 
     atom.packages.triggerDeferredActivationHooks();
-    waitsForPromise(() => activationPromise);
+    await activationPromise;
   });
 
   it('should be in the packages list', () =>
@@ -35,86 +36,60 @@ describe('The flake8 provider for Linter', () => {
 
   describe('checks bad.py and', () => {
     let editor = null;
-    beforeEach(() => {
-      waitsForPromise(() =>
-        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; }),
-      );
+    beforeEach(async () => {
+      editor = await atom.workspace.open(badPath);
     });
 
-    it('finds at least one message', () =>
-      waitsForPromise(() =>
-        lint(editor).then(messages =>
-          expect(messages.length).toBeGreaterThan(0),
-        ),
-      ),
-    );
+    it('finds at least one message', async () => {
+      const messages = await lint(editor);
+      expect(messages.length).toBeGreaterThan(0);
+    });
 
-    it('verifies that message', () =>
-      waitsForPromise(() =>
-        lint(editor).then((messages) => {
-          expect(messages[0].type).toBe('Warning');
-          expect(messages[0].html).not.toBeDefined();
-          expect(messages[0].text).toBe('F821 — undefined name \'asfd\'');
-          expect(messages[0].filePath).toBe(badPath);
-          expect(messages[0].range).toEqual([[0, 0], [0, 4]]);
-        }),
-      ),
-    );
+    it('verifies that message', async () => {
+      const messages = await lint(editor);
+      expect(messages[0].type).toBe('Warning');
+      expect(messages[0].html).not.toBeDefined();
+      expect(messages[0].text).toBe('F821 — undefined name \'asfd\'');
+      expect(messages[0].filePath).toBe(badPath);
+      expect(messages[0].range).toEqual([[0, 0], [0, 4]]);
+    });
 
-    it('checks that the message is an error if flakeErrors is set', () => {
+    it('checks that the message is an error if flakeErrors is set', async () => {
       atom.config.set('linter-flake8.flakeErrors', true);
-      waitsForPromise(() =>
-        lint(editor).then(messages =>
-          expect(messages[0].type).toBe('Error'),
-        ),
-      );
+      const messages = await lint(editor);
+      expect(messages[0].type).toBe('Error');
     });
   });
 
   describe('checks errwarn.py and', () => {
     let editor = null;
 
-    beforeEach(() => {
-      waitsForPromise(() =>
-        atom.workspace.open(errwarnPath).then((openEditor) => { editor = openEditor; }),
-      );
+    beforeEach(async () => {
+      editor = await atom.workspace.open(errwarnPath);
     });
 
-    it('finds at least one message', () =>
-      waitsForPromise(() =>
-        lint(editor).then(messages =>
-          expect(messages.length).toBeGreaterThan(0),
-        ),
-      ),
-    );
+    it('finds at least one message', async () => {
+      const messages = await lint(editor);
+      expect(messages.length).toBeGreaterThan(0);
+    });
 
-    it('finds the message is a warning if pycodestyleErrorsToWarnings is set', () => {
+    it('finds the message is a warning if pycodestyleErrorsToWarnings is set', async () => {
       atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', true);
-      waitsForPromise(() =>
-        lint(editor).then(messages =>
-          expect(messages[0].type).toBe('Warning'),
-        ),
-      );
+      const messages = await lint(editor);
+      expect(messages[0].type).toBe('Warning');
     });
 
-    it("finds the message is an error if pycodestyleErrorsToWarnings isn't set", () => {
+    it("finds the message is an error if pycodestyleErrorsToWarnings isn't set", async () => {
       atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', false);
-      waitsForPromise(() =>
-        lint(editor).then(messages =>
-          expect(messages[0].type).toBe('Error'),
-        ),
-      );
+      const messages = await lint(editor);
+      expect(messages[0].type).toBe('Error');
     });
   });
 
-  it('finds nothing wrong with a valid file', () => {
-    waitsForPromise(() =>
-      atom.workspace.open(goodPath).then(editor =>
-        lint(editor).then(messages =>
-          expect(messages.length).toBe(0),
-        ),
-      ),
-    );
+  it('finds nothing wrong with a valid file', async () => {
+    const editor = await atom.workspace.open(goodPath);
+    const messages = await lint(editor);
+    expect(messages.length).toBe(0);
   });
 
   describe('executable path', () => {
@@ -128,7 +103,7 @@ describe('The flake8 provider for Linter', () => {
       return Promise.resolve('');
     }
 
-    beforeEach(() => {
+    beforeEach(async () => {
       atom.project.addPath(fixturePath);
 
       Object.defineProperty(helpers, 'exec', {
@@ -136,9 +111,7 @@ describe('The flake8 provider for Linter', () => {
         value: fakeExec,
       });
 
-      waitsForPromise(() =>
-        atom.workspace.open(badPath).then((openEditor) => { editor = openEditor; }),
-      );
+      editor = await atom.workspace.open(badPath);
     });
 
     afterEach(() => {
@@ -148,18 +121,13 @@ describe('The flake8 provider for Linter', () => {
       });
     });
 
-    it('finds executable relative to project', () => {
-      atom.config.set('linter-flake8.executablePath',
-        join('$PROJECT', 'flake8'),
-      );
-      waitsForPromise(() =>
-        lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8')),
-        ),
-      );
+    it('finds executable relative to project', async () => {
+      atom.config.set('linter-flake8.executablePath', join('$PROJECT', 'flake8'));
+      await lint(editor);
+      expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8'));
     });
 
-    it('finds executable relative to projects', () => {
+    it('finds executable relative to projects', async () => {
       const paths = [
         join('$project', 'null'),
         join('$pRoJeCt', 'flake1'),
@@ -167,25 +135,17 @@ describe('The flake8 provider for Linter', () => {
         join('$PROJECT', 'flake8'),
       ].join(';');
       atom.config.set('linter-flake8.executablePath', paths);
-      waitsForPromise(() =>
-        lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8')),
-        ),
-      );
+      await lint(editor);
+      expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8'));
     });
 
-    it('finds executable using project name', () => {
-      atom.config.set('linter-flake8.executablePath',
-        join('$PROJECT_NAME', 'flake8'),
-      );
-      waitsForPromise(() =>
-        lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(join('fixtures', 'flake8')),
-        ),
-      );
+    it('finds executable using project name', async () => {
+      atom.config.set('linter-flake8.executablePath', join('$PROJECT_NAME', 'flake8'));
+      await lint(editor);
+      expect(execParams.pop()[0]).toBe(join('fixtures', 'flake8'));
     });
 
-    it('finds executable using project names', () => {
+    it('finds executable using project names', async () => {
       const paths = [
         join('$project_name', 'null'),
         join('$pRoJeCt_NaMe', 'flake1'),
@@ -199,87 +159,69 @@ describe('The flake8 provider for Linter', () => {
         join('fixtures', 'flake8'),
       ].join(';');
       atom.config.set('linter-flake8.executablePath', paths);
-      waitsForPromise(() =>
-        lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(correct),
-        ),
-      );
+      await lint(editor);
+      expect(execParams.pop()[0]).toBe(correct);
     });
 
-    it('normalizes executable path', () => {
+    it('normalizes executable path', async () => {
       atom.config.set('linter-flake8.executablePath',
         join(fixturePath, '..', 'fixtures', 'flake8'),
       );
-      waitsForPromise(() =>
-        lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8')),
-        ),
-      );
+      await lint(editor);
+      expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8'));
     });
 
-    it('finds backup executable', () => {
+    it('finds backup executable', async () => {
       const flakeNotFound = join('$PROJECT', 'flake8_notfound');
       const flakeBackup = join(fixturePath, 'flake8_backup');
       atom.config.set('linter-flake8.executablePath',
         `${flakeNotFound};${flakeBackup}`,
       );
-      waitsForPromise(() =>
-        lint(editor).then(() =>
-          expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8_backup')),
-        ),
-      );
+      await lint(editor);
+      expect(execParams.pop()[0]).toBe(join(fixturePath, 'flake8_backup'));
     });
   });
 
   describe('works with defining builtins', () => {
     let editor;
 
-    beforeEach(() => {
-      waitsForPromise(() =>
-        atom.workspace.open(builtinsPath).then((openEditor) => { editor = openEditor; }),
-      );
+    beforeEach(async () => {
+      editor = await atom.workspace.open(builtinsPath);
     });
 
-    it('shows all warnings when the setting is blank', () => {
-      waitsForPromise(() =>
-        lint(editor).then((messages) => {
-          expect(messages.length).toBe(2);
+    it('shows all warnings when the setting is blank', async () => {
+      const messages = await lint(editor);
+      expect(messages.length).toBe(2);
 
-          expect(messages[0].type).toBe('Warning');
-          expect(messages[0].html).not.toBeDefined();
-          expect(messages[0].text).toBe('F821 — undefined name \'bar\'');
-          expect(messages[0].filePath).toBe(builtinsPath);
-          expect(messages[0].range).toEqual([[0, 6], [0, 9]]);
+      expect(messages[0].type).toBe('Warning');
+      expect(messages[0].html).not.toBeDefined();
+      expect(messages[0].text).toBe('F821 — undefined name \'bar\'');
+      expect(messages[0].filePath).toBe(builtinsPath);
+      expect(messages[0].range).toEqual([[0, 6], [0, 9]]);
 
-          expect(messages[1].type).toBe('Warning');
-          expect(messages[1].html).not.toBeDefined();
-          expect(messages[1].text).toBe('F821 — undefined name \'foo_bar\'');
-          expect(messages[1].filePath).toBe(builtinsPath);
-          expect(messages[1].range).toEqual([[1, 9], [1, 16]]);
-        }),
-      );
+      expect(messages[1].type).toBe('Warning');
+      expect(messages[1].html).not.toBeDefined();
+      expect(messages[1].text).toBe('F821 — undefined name \'foo_bar\'');
+      expect(messages[1].filePath).toBe(builtinsPath);
+      expect(messages[1].range).toEqual([[1, 9], [1, 16]]);
     });
 
-    it('works with a single builtin', () => {
+    it('works with a single builtin', async () => {
       atom.config.set('linter-flake8.builtins', ['bar']);
-      waitsForPromise(() =>
-        lint(editor).then((messages) => {
-          expect(messages.length).toBe(1);
+      const messages = await lint(editor);
+      expect(messages.length).toBe(1);
 
-          expect(messages[0].type).toBe('Warning');
-          expect(messages[0].html).not.toBeDefined();
-          expect(messages[0].text).toBe('F821 — undefined name \'foo_bar\'');
-          expect(messages[0].filePath).toBe(builtinsPath);
-          expect(messages[0].range).toEqual([[1, 9], [1, 16]]);
-        }),
-      );
+      expect(messages[0].type).toBe('Warning');
+      expect(messages[0].html).not.toBeDefined();
+      expect(messages[0].text).toBe('F821 — undefined name \'foo_bar\'');
+      expect(messages[0].filePath).toBe(builtinsPath);
+      expect(messages[0].range).toEqual([[1, 9], [1, 16]]);
     });
 
-    it('works with multiple builtins', () => {
+    it('works with multiple builtins', async () => {
       atom.config.set('linter-flake8.builtins', ['bar', 'foo_bar']);
-      waitsForPromise(() =>
-        lint(editor).then(messages => expect(messages.length).toBe(0)),
-      );
+      const messages = await lint(editor);
+      expect(messages.length).toBe(0);
     });
   });
 });
