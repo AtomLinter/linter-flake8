@@ -25,7 +25,7 @@
     },
     "projectConfigFile": {
       "type": "array",
-      "default": [],
+      "default": ["tox.ini", ".flake8", "setup.cfg"],
       "description": "flake config file relative path from project (e.g. tox.ini or .flake8rc)",
       "items": {
         "type": "string"
