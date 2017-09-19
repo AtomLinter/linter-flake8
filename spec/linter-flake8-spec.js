@@ -1,9 +1,10 @@
 'use babel';
 
 import { join } from 'path';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { beforeEach, it } from 'jasmine-fix';
-// NOTE: If using fit you must add it to the list above!
+// eslint-disable-next-line no-unused-vars
+import { it, fit, wait, beforeEach, afterEach } from 'jasmine-fix';
+
+const { lint } = require('../lib/main.js').provideLinter();
 
 const fixturePath = join(__dirname, 'fixtures');
 const goodPath = join(fixturePath, 'good.py');
@@ -12,8 +13,6 @@ const errwarnPath = join(fixturePath, 'errwarn.py');
 const builtinsPath = join(fixturePath, 'builtins.py');
 
 describe('The flake8 provider for Linter', () => {
-  const lint = require('../lib/main.js').provideLinter().lint;
-
   beforeEach(async () => {
     // Info about this beforeEach() implementation:
     // https://github.com/AtomLinter/Meta/issues/15
@@ -27,12 +26,10 @@ describe('The flake8 provider for Linter', () => {
   });
 
   it('should be in the packages list', () =>
-    expect(atom.packages.isPackageLoaded('linter-flake8')).toBe(true),
-  );
+    expect(atom.packages.isPackageLoaded('linter-flake8')).toBe(true));
 
   it('should be an active package', () =>
-    expect(atom.packages.isPackageActive('linter-flake8')).toBe(true),
-  );
+    expect(atom.packages.isPackageActive('linter-flake8')).toBe(true));
 
   describe('checks bad.py and', () => {
     let editor = null;
@@ -164,7 +161,8 @@ describe('The flake8 provider for Linter', () => {
     });
 
     it('normalizes executable path', async () => {
-      atom.config.set('linter-flake8.executablePath',
+      atom.config.set(
+        'linter-flake8.executablePath',
         join(fixturePath, '..', 'fixtures', 'flake8'),
       );
       await lint(editor);
@@ -174,7 +172,8 @@ describe('The flake8 provider for Linter', () => {
     it('finds backup executable', async () => {
       const flakeNotFound = join('$PROJECT', 'flake8_notfound');
       const flakeBackup = join(fixturePath, 'flake8_backup');
-      atom.config.set('linter-flake8.executablePath',
+      atom.config.set(
+        'linter-flake8.executablePath',
         `${flakeNotFound};${flakeBackup}`,
       );
       await lint(editor);
