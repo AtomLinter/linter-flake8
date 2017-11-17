@@ -56,7 +56,7 @@
       "default": false
     },
     "selectErrors": {
-      "description": "input \"E, W\" to include all errors/warnings",
+      "description": "input \"E, W, F\" to include all errors/warnings. F includes the Flake messages",
       "type": "array",
       "default": [],
       "items": {
