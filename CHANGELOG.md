@@ -1,6 +1,7 @@
 # Change Log
 
 ## [v2.2.1](https://github.com/AtomLinter/linter-flake8/tree/v2.2.1) (2017-04-25)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.2.0...v2.2.1)
 
 **Fixed bugs:**
@@ -8,6 +9,7 @@
 - Report when flake8 crashes! [\#414](https://github.com/AtomLinter/linter-flake8/pull/414) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v2.2.0](https://github.com/AtomLinter/linter-flake8/tree/v2.2.0) (2017-04-25)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.5...v2.2.0)
 
 **Implemented enhancements:**
@@ -18,25 +20,27 @@
 - Uniquely spawn lint runs [\#412](https://github.com/AtomLinter/linter-flake8/pull/412) ([Arcanemagus](https://github.com/Arcanemagus))
 - Asyncify the specs [\#411](https://github.com/AtomLinter/linter-flake8/pull/411) ([Arcanemagus](https://github.com/Arcanemagus))
 - Add support for builtins [\#410](https://github.com/AtomLinter/linter-flake8/pull/410) ([Arcanemagus](https://github.com/Arcanemagus))
-- Update atom-linter to the latest version 🚀 [\#393](https://github.com/AtomLinter/linter-flake8/pull/393) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update atom-linter to version 10.0.0 🚀 [\#393](https://github.com/AtomLinter/linter-flake8/pull/393) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 - Update default line-length value [\#381](https://github.com/AtomLinter/linter-flake8/pull/381) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v2.1.5](https://github.com/AtomLinter/linter-flake8/tree/v2.1.5) (2017-03-18)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.4...v2.1.5)
 
 **Implemented enhancements:**
 
 - Update to eslint-config-airbnb-base v11.1.1 [\#368](https://github.com/AtomLinter/linter-flake8/pull/368) ([Arcanemagus](https://github.com/Arcanemagus))
 - Update CI configuration [\#367](https://github.com/AtomLinter/linter-flake8/pull/367) ([Arcanemagus](https://github.com/Arcanemagus))
-- Update fs-plus to the latest version 🚀 [\#361](https://github.com/AtomLinter/linter-flake8/pull/361) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
-- Update atom-linter to the latest version 🚀 [\#349](https://github.com/AtomLinter/linter-flake8/pull/349) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update fs-plus to version 3.0.0 🚀 [\#361](https://github.com/AtomLinter/linter-flake8/pull/361) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update atom-linter to version 9.0.0 🚀 [\#349](https://github.com/AtomLinter/linter-flake8/pull/349) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 ## [v2.1.4](https://github.com/AtomLinter/linter-flake8/tree/v2.1.4) (2016-12-12)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.3...v2.1.4)
 
 **Implemented enhancements:**
 
-- Update eslint-config-airbnb-base to the latest version 🚀 [\#306](https://github.com/AtomLinter/linter-flake8/pull/306) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update eslint-config-airbnb-base to version 11.0.0 🚀 [\#306](https://github.com/AtomLinter/linter-flake8/pull/306) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 
 **Fixed bugs:**
 
@@ -46,6 +50,7 @@
 - Remove custom range fixers [\#304](https://github.com/AtomLinter/linter-flake8/pull/304) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v2.1.3](https://github.com/AtomLinter/linter-flake8/tree/v2.1.3) (2016-11-30)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.2...v2.1.3)
 
 **Fixed bugs:**
@@ -54,6 +59,7 @@
 - Added "g" flag to project path replacement [\#291](https://github.com/AtomLinter/linter-flake8/pull/291) ([hiroaki-yamamoto](https://github.com/hiroaki-yamamoto))
 
 ## [v2.1.2](https://github.com/AtomLinter/linter-flake8/tree/v2.1.2) (2016-11-29)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.1...v2.1.2)
 
 **Implemented enhancements:**
@@ -61,6 +67,7 @@
 - Add activationHooks for django-atom [\#287](https://github.com/AtomLinter/linter-flake8/pull/287) ([jjlorenzo](https://github.com/jjlorenzo))
 
 ## [v2.1.1](https://github.com/AtomLinter/linter-flake8/tree/v2.1.1) (2016-11-21)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.1.0...v2.1.1)
 
 **Fixed bugs:**
@@ -69,16 +76,18 @@
 - Activate on more grammars [\#281](https://github.com/AtomLinter/linter-flake8/pull/281) ([walles](https://github.com/walles))
 
 ## [v2.1.0](https://github.com/AtomLinter/linter-flake8/tree/v2.1.0) (2016-11-19)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.0.2...v2.1.0)
 
 **Implemented enhancements:**
 
 - Handle errors more gracefully [\#277](https://github.com/AtomLinter/linter-flake8/pull/277) ([Arcanemagus](https://github.com/Arcanemagus))
 - Improve Atom startup time [\#276](https://github.com/AtomLinter/linter-flake8/pull/276) ([walles](https://github.com/walles))
-- Update eslint-config-airbnb-base to the latest version 🚀 [\#272](https://github.com/AtomLinter/linter-flake8/pull/272) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update eslint-config-airbnb-base to version 10.0.0 🚀 [\#272](https://github.com/AtomLinter/linter-flake8/pull/272) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
 - Move to a generated changelog [\#264](https://github.com/AtomLinter/linter-flake8/pull/264) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v2.0.2](https://github.com/AtomLinter/linter-flake8/tree/v2.0.2) (2016-10-18)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.0.1...v2.0.2)
 
 **Fixed bugs:**
@@ -86,6 +95,7 @@
 - Workaround a bug with E999 reporting [\#262](https://github.com/AtomLinter/linter-flake8/pull/262) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v2.0.1](https://github.com/AtomLinter/linter-flake8/tree/v2.0.1) (2016-10-17)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.0.0...v2.0.1)
 
 **Implemented enhancements:**
@@ -98,11 +108,11 @@
 - chore\(package\): update fs-plus to version 2.9.3 [\#261](https://github.com/AtomLinter/linter-flake8/pull/261) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v2.0.0](https://github.com/AtomLinter/linter-flake8/tree/v2.0.0) (2016-10-15)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.13.4...v2.0.0)
 
 **Implemented enhancements:**
 
-- Rewrite in ES2017 [\#255](https://github.com/AtomLinter/linter-flake8/pull/255) ([Arcanemagus](https://github.com/Arcanemagus))
 - Update eslint-config-airbnb-base to version 8.0.0 🚀 [\#250](https://github.com/AtomLinter/linter-flake8/pull/250) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Update eslint-config-airbnb-base to version 7.0.0 🚀 [\#246](https://github.com/AtomLinter/linter-flake8/pull/246) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
@@ -114,6 +124,7 @@
 - Rewrite in ES2017 [\#255](https://github.com/AtomLinter/linter-flake8/pull/255) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v1.13.4](https://github.com/AtomLinter/linter-flake8/tree/v1.13.4) (2016-09-06)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.13.3...v1.13.4)
 
 **Implemented enhancements:**
@@ -126,6 +137,7 @@
 - fix flake8 config param [\#244](https://github.com/AtomLinter/linter-flake8/pull/244) ([urbaniak](https://github.com/urbaniak))
 
 ## [v1.13.3](https://github.com/AtomLinter/linter-flake8/tree/v1.13.3) (2016-09-02)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.13.2...v1.13.3)
 
 **Implemented enhancements:**
@@ -146,9 +158,11 @@
 - Fix per-project configuration behaviour [\#201](https://github.com/AtomLinter/linter-flake8/pull/201) ([rarguelloF](https://github.com/rarguelloF))
 
 ## [v1.13.2](https://github.com/AtomLinter/linter-flake8/tree/v1.13.2) (2016-06-13)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.13.1...v1.13.2)
 
 ## [v1.13.1](https://github.com/AtomLinter/linter-flake8/tree/v1.13.1) (2016-06-13)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.13.0...v1.13.1)
 
 **Implemented enhancements:**
@@ -167,6 +181,7 @@
 - Handle some internal API changes in Atom v1.9.0 [\#188](https://github.com/AtomLinter/linter-flake8/pull/188) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v1.13.0](https://github.com/AtomLinter/linter-flake8/tree/v1.13.0) (2016-03-04)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.12.1...v1.13.0)
 
 **Implemented enhancements:**
@@ -175,6 +190,7 @@
 - $PROJECT\_NAME substitution [\#167](https://github.com/AtomLinter/linter-flake8/pull/167) ([trsanders](https://github.com/trsanders))
 
 ## [v1.12.1](https://github.com/AtomLinter/linter-flake8/tree/v1.12.1) (2016-03-01)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.12.0...v1.12.1)
 
 **Fixed bugs:**
@@ -182,6 +198,7 @@
 - Ensure fs.normalize\(\) applied to exec path. [\#162](https://github.com/AtomLinter/linter-flake8/pull/162) ([lexicalunit](https://github.com/lexicalunit))
 
 ## [v1.12.0](https://github.com/AtomLinter/linter-flake8/tree/v1.12.0) (2016-02-24)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.11.0...v1.12.0)
 
 **Implemented enhancements:**
@@ -190,6 +207,7 @@
 - Add support for $PROJECT substitution [\#143](https://github.com/AtomLinter/linter-flake8/pull/143) ([keras](https://github.com/keras))
 
 ## [v1.11.0](https://github.com/AtomLinter/linter-flake8/tree/v1.11.0) (2016-02-19)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.10.1...v1.11.0)
 
 **Implemented enhancements:**
@@ -200,6 +218,7 @@
 - Update atom-package-deps to version 4.0.1 🚀 [\#152](https://github.com/AtomLinter/linter-flake8/pull/152) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
 ## [v1.10.1](https://github.com/AtomLinter/linter-flake8/tree/v1.10.1) (2016-02-05)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.10.0...v1.10.1)
 
 **Implemented enhancements:**
@@ -208,6 +227,7 @@
 - Update eslint-config-airbnb to version 5.0.0 🚀 [\#147](https://github.com/AtomLinter/linter-flake8/pull/147) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
 ## [v1.10.0](https://github.com/AtomLinter/linter-flake8/tree/v1.10.0) (2016-01-28)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.9.3...v1.10.0)
 
 **Implemented enhancements:**
@@ -224,6 +244,7 @@
 - Only match imports after the `import` keyword [\#142](https://github.com/AtomLinter/linter-flake8/pull/142) ([patrys](https://github.com/patrys))
 
 ## [v1.9.3](https://github.com/AtomLinter/linter-flake8/tree/v1.9.3) (2015-12-16)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.9.2...v1.9.3)
 
 **Implemented enhancements:**
@@ -240,6 +261,7 @@
 - Don't rely on screen rows and respect offsets [\#128](https://github.com/AtomLinter/linter-flake8/pull/128) ([patrys](https://github.com/patrys))
 
 ## [v1.9.2](https://github.com/AtomLinter/linter-flake8/tree/v1.9.2) (2015-11-12)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.9.1...v1.9.2)
 
 **Fixed bugs:**
@@ -250,6 +272,7 @@
 - Removed flake8-pep257 from README \(\#106\) [\#110](https://github.com/AtomLinter/linter-flake8/pull/110) ([cemsbr](https://github.com/cemsbr))
 
 ## [v1.9.1](https://github.com/AtomLinter/linter-flake8/tree/v1.9.1) (2015-10-19)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.9.0...v1.9.1)
 
 **Fixed bugs:**
@@ -258,11 +281,11 @@
 - Verify tokenizedLine is set [\#98](https://github.com/AtomLinter/linter-flake8/pull/98) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v1.9.0](https://github.com/AtomLinter/linter-flake8/tree/v1.9.0) (2015-10-13)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.8.0...v1.9.0)
 
 **Implemented enhancements:**
 
-- Update README.md [\#94](https://github.com/AtomLinter/linter-flake8/pull/94) ([Arcanemagus](https://github.com/Arcanemagus))
 - Add support for highlighting unused imports [\#81](https://github.com/AtomLinter/linter-flake8/pull/81) ([patrys](https://github.com/patrys))
 
 **Fixed bugs:**
@@ -271,15 +294,14 @@
 - Update README.md [\#94](https://github.com/AtomLinter/linter-flake8/pull/94) ([Arcanemagus](https://github.com/Arcanemagus))
 
 ## [v1.8.0](https://github.com/AtomLinter/linter-flake8/tree/v1.8.0) (2015-10-08)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.7.0...v1.8.0)
 
 **Implemented enhancements:**
 
 - Add Landon as a collaborator [\#87](https://github.com/AtomLinter/linter-flake8/issues/87)
-- Remove executableDir setting [\#63](https://github.com/AtomLinter/linter-flake8/issues/63)
 - Show more detailed error about not found executable [\#2](https://github.com/AtomLinter/linter-flake8/issues/2)
 - Use container based Travis [\#92](https://github.com/AtomLinter/linter-flake8/pull/92) ([Arcanemagus](https://github.com/Arcanemagus))
-- Add coffeelint [\#91](https://github.com/AtomLinter/linter-flake8/pull/91) ([Arcanemagus](https://github.com/Arcanemagus))
 - Add Travis-CI [\#90](https://github.com/AtomLinter/linter-flake8/pull/90) ([Arcanemagus](https://github.com/Arcanemagus))
 - Allow for custom error letters. [\#88](https://github.com/AtomLinter/linter-flake8/pull/88) ([beck](https://github.com/beck))
 
@@ -296,6 +318,7 @@
 - Fix version number in CHANGELOG [\#85](https://github.com/AtomLinter/linter-flake8/pull/85) ([frewsxcv](https://github.com/frewsxcv))
 
 ## [v1.7.0](https://github.com/AtomLinter/linter-flake8/tree/v1.7.0) (2015-10-02)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.6.1...v1.7.0)
 
 **Implemented enhancements:**
@@ -313,6 +336,7 @@
 - Compromise for passing a config file to flake8 [\#68](https://github.com/AtomLinter/linter-flake8/pull/68) ([jeremyosborne](https://github.com/jeremyosborne))
 
 ## [v1.6.1](https://github.com/AtomLinter/linter-flake8/tree/v1.6.1) (2015-08-14)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.6.0...v1.6.1)
 
 **Implemented enhancements:**
@@ -320,6 +344,7 @@
 - change lintOnFly to true [\#65](https://github.com/AtomLinter/linter-flake8/pull/65) ([Ryex](https://github.com/Ryex))
 
 ## [v1.6.0](https://github.com/AtomLinter/linter-flake8/tree/v1.6.0) (2015-08-03)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.5.0...v1.6.0)
 
 **Implemented enhancements:**
@@ -334,6 +359,7 @@
 - Fix small typo [\#54](https://github.com/AtomLinter/linter-flake8/pull/54) ([c0dr](https://github.com/c0dr))
 
 ## [v1.5.0](https://github.com/AtomLinter/linter-flake8/tree/v1.5.0) (2015-07-04)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.4.2...v1.5.0)
 
 **Implemented enhancements:**
@@ -347,6 +373,7 @@
 - Upcoming linter changes [\#40](https://github.com/AtomLinter/linter-flake8/issues/40)
 
 ## [v1.4.2](https://github.com/AtomLinter/linter-flake8/tree/v1.4.2) (2015-05-27)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.4.1...v1.4.2)
 
 **Fixed bugs:**
@@ -354,11 +381,12 @@
 - Uncaught TypeError: undefined is not a function [\#28](https://github.com/AtomLinter/linter-flake8/issues/28)
 
 ## [v1.4.1](https://github.com/AtomLinter/linter-flake8/tree/v1.4.1) (2015-05-20)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.4.0...v1.4.1)
 
 **Implemented enhancements:**
 
-- README: information on docstrings \(pep257\) support [\#26](https://github.com/AtomLinter/linter-flake8/pull/26) ([andya9](https://github.com/andya9))
+- README: information on docstrings \(pep257\) support [\#26](https://github.com/AtomLinter/linter-flake8/pull/26) ([ghost](https://github.com/ghost))
 
 **Fixed bugs:**
 
@@ -368,6 +396,7 @@
 - Update package.json to be APIv1.0-compliant [\#32](https://github.com/AtomLinter/linter-flake8/pull/32) ([idan](https://github.com/idan))
 
 ## [v1.4.0](https://github.com/AtomLinter/linter-flake8/tree/v1.4.0) (2015-04-19)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.3.0...v1.4.0)
 
 **Implemented enhancements:**
@@ -384,6 +413,7 @@
 - Fixed config to adhere to the API docs. Fixes \#19 [\#20](https://github.com/AtomLinter/linter-flake8/pull/20) ([ChaoticMind](https://github.com/ChaoticMind))
 
 ## [v1.3.0](https://github.com/AtomLinter/linter-flake8/tree/v1.3.0) (2015-02-04)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.2.0...v1.3.0)
 
 **Implemented enhancements:**
@@ -396,6 +426,7 @@
 - Grab Q\*\*\* linter error [\#15](https://github.com/AtomLinter/linter-flake8/pull/15) ([2m](https://github.com/2m))
 
 ## [v1.2.0](https://github.com/AtomLinter/linter-flake8/tree/v1.2.0) (2014-09-23)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.1.2...v1.2.0)
 
 **Implemented enhancements:**
@@ -404,9 +435,11 @@
 - Add maxComplexity for mccabe. [\#9](https://github.com/AtomLinter/linter-flake8/pull/9) ([deybhayden](https://github.com/deybhayden))
 
 ## [v1.1.2](https://github.com/AtomLinter/linter-flake8/tree/v1.1.2) (2014-08-13)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.1.1...v1.1.2)
 
 ## [v1.1.1](https://github.com/AtomLinter/linter-flake8/tree/v1.1.1) (2014-08-13)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.1.0...v1.1.1)
 
 **Merged pull requests:**
@@ -414,14 +447,12 @@
 - modified regex to handle windows line endings [\#7](https://github.com/AtomLinter/linter-flake8/pull/7) ([ghost](https://github.com/ghost))
 
 ## [v1.1.0](https://github.com/AtomLinter/linter-flake8/tree/v1.1.0) (2014-07-28)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.0.8...v1.1.0)
 
 ## [v1.0.8](https://github.com/AtomLinter/linter-flake8/tree/v1.0.8) (2014-07-28)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.0.7...v1.0.8)
-
-**Implemented enhancements:**
-
-- Add options, fix typo in defaults [\#3](https://github.com/AtomLinter/linter-flake8/pull/3) ([bstrdsmkr](https://github.com/bstrdsmkr))
 
 **Fixed bugs:**
 
@@ -429,9 +460,13 @@
 - Add options, fix typo in defaults [\#3](https://github.com/AtomLinter/linter-flake8/pull/3) ([bstrdsmkr](https://github.com/bstrdsmkr))
 
 ## [v1.0.7](https://github.com/AtomLinter/linter-flake8/tree/v1.0.7) (2014-07-23)
+
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v1.0.6...v1.0.7)
 
 ## [v1.0.6](https://github.com/AtomLinter/linter-flake8/tree/v1.0.6) (2014-07-11)
+
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/c8fea6d554af10dc592c87073ec867a2477f226c...v1.0.6)
+
 
 
 \* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
