@@ -7,8 +7,11 @@ import { it, fit, wait, beforeEach, afterEach } from 'jasmine-fix';
 const { lint } = require('../lib/main.js').provideLinter();
 
 const fixturePath = join(__dirname, 'fixtures');
+const fixtureWithConfigPath = join(__dirname, 'fixtures', 'with-config-file');
 const goodPath = join(fixturePath, 'good.py');
 const badPath = join(fixturePath, 'bad.py');
+const badIgnoredPath = join(fixtureWithConfigPath, 'bad-ignored.py');
+const badSubdirIgnoredPath = join(fixtureWithConfigPath, 'subdir', 'bad-ignored.py');
 const errwarnPath = join(fixturePath, 'errwarn.py');
 const builtinsPath = join(fixturePath, 'builtins.py');
 
@@ -80,6 +83,26 @@ describe('The flake8 provider for Linter', () => {
       atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', false);
       const messages = await lint(editor);
       expect(messages[0].type).toBe('Error');
+    });
+  });
+
+  describe('use configuration file and', () => {
+    let editor = null;
+
+    beforeEach(async () => {
+      atom.project.addPath(fixtureWithConfigPath);
+      editor = await atom.workspace.open(badIgnoredPath);
+    });
+
+    it('ignores file excluded in configuration file', async () => {
+      const messages = await lint(editor);
+      expect(messages.length).toBe(0);
+    });
+
+    it('ignores file excluded in configuration file using relative path', async () => {
+      editor = await atom.workspace.open(badSubdirIgnoredPath);
+      const messages = await lint(editor);
+      expect(messages.length).toBe(0);
     });
   });
 
