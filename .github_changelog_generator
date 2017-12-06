@@ -1,0 +1,5 @@
+user=AtomLinter
+project=linter-flake8
+unreleased=true
+future-release=v2.3.0
+exclude_labels=duplicate,question,invalid,wontfix,Duplicate,Question,Invalid,Wontfix,External,Unable to reproduce

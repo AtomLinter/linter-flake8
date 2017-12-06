@@ -1,5 +1,24 @@
 # Change Log
 
+## [v2.3.0](https://github.com/AtomLinter/linter-flake8/tree/v2.3.0) (2017-12-06)
+
+[Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.2.1...v2.3.0)
+
+**Implemented enhancements:**
+
+- Files not being excluded via Atom, but command line flake8 does [\#454](https://github.com/AtomLinter/linter-flake8/issues/454)
+- Update eslint-config-airbnb-base to version 12.0.0 🚀 [\#496](https://github.com/AtomLinter/linter-flake8/pull/496) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Pass filename to Flake8 [\#482](https://github.com/AtomLinter/linter-flake8/pull/482) ([lucasdf](https://github.com/lucasdf))
+- Update eslint to version 4.3.0 🚀 [\#460](https://github.com/AtomLinter/linter-flake8/pull/460) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+**Fixed bugs:**
+
+- Object.dirname is deprecated. [\#527](https://github.com/AtomLinter/linter-flake8/issues/527)
+- Linter-flake8 doesn't resolve the configuration as flake8 [\#124](https://github.com/AtomLinter/linter-flake8/issues/124)
+- Guard against invalid TextEditor and empty paths [\#544](https://github.com/AtomLinter/linter-flake8/pull/544) ([Arcanemagus](https://github.com/Arcanemagus))
+- Use Trusty image on Travis-CI [\#448](https://github.com/AtomLinter/linter-flake8/pull/448) ([Arcanemagus](https://github.com/Arcanemagus))
+- Add support to default config files [\#447](https://github.com/AtomLinter/linter-flake8/pull/447) ([gpiress](https://github.com/gpiress))
+
 ## [v2.2.1](https://github.com/AtomLinter/linter-flake8/tree/v2.2.1) (2017-04-25)
 
 [Full Changelog](https://github.com/AtomLinter/linter-flake8/compare/v2.2.0...v2.2.1)
