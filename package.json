@@ -23,14 +23,10 @@
       "default": "flake8",
       "description": "Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). Use `$PROJECT` or `$PROJECT_NAME` substitutions for project specific paths e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`"
     },
-    "projectConfigFile": {
+    "configFile": {
       "type": "array",
-      "default": [
-        "tox.ini",
-        ".flake8",
-        "setup.cfg"
-      ],
-      "description": "flake config file relative path from project (e.g. tox.ini or .flake8rc)",
+      "default": [],
+      "description": "Override flake8 default config files, relative path from project (e.g. tox.ini or .flake8)",
       "items": {
         "type": "string"
       }
