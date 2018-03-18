@@ -21,61 +21,80 @@
     "executablePath": {
       "type": "string",
       "default": "flake8",
-      "description": "Semicolon separated list of paths to a binary (e.g. /usr/local/bin/flake8). Use `$PROJECT` or `$PROJECT_NAME` substitutions for project specific paths e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`"
+      "description": "Semicolon-separated list of paths to a binary (e.g. `/usr/local/bin/flake8`). Use `$PROJECT` or `$PROJECT_NAME` substitutions for project specific paths (e.g. `$PROJECT/.venv/bin/flake8;/usr/bin/flake8`).",
+      "order": 1
     },
     "configFile": {
       "type": "array",
       "default": [],
-      "description": "Override flake8 default config files, relative path from project (e.g. tox.ini or .flake8)",
-      "items": {
-        "type": "string"
-      }
-    },
-    "maxLineLength": {
-      "type": "integer",
-      "default": 79
-    },
-    "ignoreErrorCodes": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "string"
-      }
-    },
-    "maxComplexity": {
-      "description": "McCabe complexity threshold (`-1` to disable)",
-      "type": "integer",
-      "default": -1
-    },
-    "hangClosing": {
-      "type": "boolean",
-      "default": false
-    },
-    "selectErrors": {
-      "description": "input \"E, W\" to include all errors/warnings",
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "string"
-      }
-    },
-    "pycodestyleErrorsToWarnings": {
-      "description": "Convert pycodestyle \"E\" messages to linter warnings",
-      "type": "boolean",
-      "default": false
-    },
-    "flakeErrors": {
-      "description": "Convert Flake \"F\" messages to linter errors",
-      "type": "boolean",
-      "default": false
-    },
-    "builtins": {
-      "type": "array",
-      "default": [],
+      "description": "Comma-separated list of relative paths (from project) to flake8 config files. If any is found, it overrides flake8 built-in config file discovery.",
       "items": {
         "type": "string"
       },
-      "description": "Define additional built in variables, in a comma separated list."
+      "order": 2
+    },
+    "flakeErrors": {
+      "description": "Convert flake8 `F` messages to linter errors.",
+      "type": "boolean",
+      "default": false,
+      "order": 3
+    },
+    "pycodestyleErrorsToWarnings": {
+      "description": "Convert pycodestyle `E` messages to linter warnings.",
+      "type": "boolean",
+      "default": false,
+      "order": 4
+    },
+    "flake8": {
+      "type": "object",
+      "title": "Override flake8 settings",
+      "order": 5,
+      "properties": {
+        "maxLineLength": {
+          "type": "integer",
+          "default": 79,
+          "order": 1
+        },
+        "ignoreErrorCodes": {
+          "description": "Comma-separated list of errors and warnings to ignore (e.g. `E4,E51,W234`).",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "order": 2
+        },
+        "selectErrorCodes": {
+          "description": "Comma-separated list of errors and warnings to enable (e.g. `E4,E51,W234`).",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "order": 3
+        },
+        "builtins": {
+          "description": "Comma-separated list of additional built in variables.",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "order": 4
+        },
+        "maxComplexity": {
+          "description": "McCabe complexity threshold (`-1` to disable).",
+          "type": "integer",
+          "default": -1,
+          "order": 5
+        },
+        "hangClosing": {
+          "description": "Hang closing bracket instead of matching indentation of opening bracket's line.",
+          "type": "boolean",
+          "default": false,
+          "order": 6
+        }
+      }
     }
   },
   "dependencies": {

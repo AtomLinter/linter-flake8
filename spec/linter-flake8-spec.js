@@ -229,7 +229,7 @@ describe('The flake8 provider for Linter', () => {
     });
 
     it('works with a single builtin', async () => {
-      atom.config.set('linter-flake8.builtins', ['bar']);
+      atom.config.set('linter-flake8.flake8.builtins', ['bar']);
       const messages = await lint(editor);
       expect(messages.length).toBe(1);
 
@@ -241,7 +241,7 @@ describe('The flake8 provider for Linter', () => {
     });
 
     it('works with multiple builtins', async () => {
-      atom.config.set('linter-flake8.builtins', ['bar', 'foo_bar']);
+      atom.config.set('linter-flake8.flake8.builtins', ['bar', 'foo_bar']);
       const messages = await lint(editor);
       expect(messages.length).toBe(0);
     });
