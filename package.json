@@ -50,10 +50,17 @@
       "title": "Override flake8 settings",
       "order": 5,
       "properties": {
+        "alwaysOverride": {
+          "title": "Override settings from config file",
+          "description": "Override settings from project config file (i.e. `.flake8`, `tox.ini`, `setup.cfg`, or manually specified ones).",
+          "type": "boolean",
+          "default": false,
+          "order": 1
+        },
         "maxLineLength": {
           "type": "integer",
           "default": 79,
-          "order": 1
+          "order": 2
         },
         "ignoreErrorCodes": {
           "description": "Comma-separated list of errors and warnings to ignore (e.g. `E4,E51,W234`).",
@@ -62,7 +69,7 @@
           "items": {
             "type": "string"
           },
-          "order": 2
+          "order": 3
         },
         "selectErrorCodes": {
           "description": "Comma-separated list of errors and warnings to enable (e.g. `E4,E51,W234`).",
@@ -71,7 +78,7 @@
           "items": {
             "type": "string"
           },
-          "order": 3
+          "order": 4
         },
         "builtins": {
           "description": "Comma-separated list of additional built in variables.",
@@ -80,19 +87,19 @@
           "items": {
             "type": "string"
           },
-          "order": 4
+          "order": 5
         },
         "maxComplexity": {
           "description": "McCabe complexity threshold (`-1` to disable).",
           "type": "integer",
           "default": -1,
-          "order": 5
+          "order": 6
         },
         "hangClosing": {
           "description": "Hang closing bracket instead of matching indentation of opening bracket's line.",
           "type": "boolean",
           "default": false,
-          "order": 6
+          "order": 7
         }
       }
     }
