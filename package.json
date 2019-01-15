@@ -95,7 +95,7 @@
     "jasmine-fix": "^1.0.1"
   },
   "package-deps": [
-    "linter"
+    "linter:2.0.0"
   ],
   "scripts": {
     "test": "apm test",
@@ -125,7 +125,7 @@
   "providedServices": {
     "linter": {
       "versions": {
-        "1.0.0": "provideLinter"
+        "2.0.0": "provideLinter"
       }
     }
   }

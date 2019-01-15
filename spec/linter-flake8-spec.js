@@ -47,17 +47,17 @@ describe('The flake8 provider for Linter', () => {
 
     it('verifies that message', async () => {
       const messages = await lint(editor);
-      expect(messages[0].type).toBe('Warning');
-      expect(messages[0].html).not.toBeDefined();
-      expect(messages[0].text).toBe('F821 — undefined name \'asfd\'');
-      expect(messages[0].filePath).toBe(badPath);
-      expect(messages[0].range).toEqual([[0, 0], [0, 4]]);
+      expect(messages[0].severity).toBe('warning');
+      expect(messages[0].description).not.toBeDefined();
+      expect(messages[0].excerpt).toBe('F821 — undefined name \'asfd\'');
+      expect(messages[0].location.file).toBe(badPath);
+      expect(messages[0].location.position).toEqual([[0, 0], [0, 4]]);
     });
 
     it('checks that the message is an error if flakeErrors is set', async () => {
       atom.config.set('linter-flake8.flakeErrors', true);
       const messages = await lint(editor);
-      expect(messages[0].type).toBe('Error');
+      expect(messages[0].severity).toBe('error');
     });
   });
 
@@ -76,13 +76,13 @@ describe('The flake8 provider for Linter', () => {
     it('finds the message is a warning if pycodestyleErrorsToWarnings is set', async () => {
       atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', true);
       const messages = await lint(editor);
-      expect(messages[0].type).toBe('Warning');
+      expect(messages[0].severity).toBe('warning');
     });
 
     it("finds the message is an error if pycodestyleErrorsToWarnings isn't set", async () => {
       atom.config.set('linter-flake8.pycodestyleErrorsToWarnings', false);
       const messages = await lint(editor);
-      expect(messages[0].type).toBe('Error');
+      expect(messages[0].severity).toBe('error');
     });
   });
 
@@ -215,17 +215,17 @@ describe('The flake8 provider for Linter', () => {
       const messages = await lint(editor);
       expect(messages.length).toBe(2);
 
-      expect(messages[0].type).toBe('Warning');
-      expect(messages[0].html).not.toBeDefined();
-      expect(messages[0].text).toBe('F821 — undefined name \'bar\'');
-      expect(messages[0].filePath).toBe(builtinsPath);
-      expect(messages[0].range).toEqual([[0, 6], [0, 9]]);
+      expect(messages[0].severity).toBe('warning');
+      expect(messages[0].description).not.toBeDefined();
+      expect(messages[0].excerpt).toBe('F821 — undefined name \'bar\'');
+      expect(messages[0].location.file).toBe(builtinsPath);
+      expect(messages[0].location.position).toEqual([[0, 6], [0, 9]]);
 
-      expect(messages[1].type).toBe('Warning');
-      expect(messages[1].html).not.toBeDefined();
-      expect(messages[1].text).toBe('F821 — undefined name \'foo_bar\'');
-      expect(messages[1].filePath).toBe(builtinsPath);
-      expect(messages[1].range).toEqual([[1, 9], [1, 16]]);
+      expect(messages[1].severity).toBe('warning');
+      expect(messages[1].description).not.toBeDefined();
+      expect(messages[1].excerpt).toBe('F821 — undefined name \'foo_bar\'');
+      expect(messages[1].location.file).toBe(builtinsPath);
+      expect(messages[1].location.position).toEqual([[1, 9], [1, 16]]);
     });
 
     it('works with a single builtin', async () => {
@@ -233,11 +233,11 @@ describe('The flake8 provider for Linter', () => {
       const messages = await lint(editor);
       expect(messages.length).toBe(1);
 
-      expect(messages[0].type).toBe('Warning');
-      expect(messages[0].html).not.toBeDefined();
-      expect(messages[0].text).toBe('F821 — undefined name \'foo_bar\'');
-      expect(messages[0].filePath).toBe(builtinsPath);
-      expect(messages[0].range).toEqual([[1, 9], [1, 16]]);
+      expect(messages[0].severity).toBe('warning');
+      expect(messages[0].description).not.toBeDefined();
+      expect(messages[0].excerpt).toBe('F821 — undefined name \'foo_bar\'');
+      expect(messages[0].location.file).toBe(builtinsPath);
+      expect(messages[0].location.position).toEqual([[1, 9], [1, 16]]);
     });
 
     it('works with multiple builtins', async () => {
