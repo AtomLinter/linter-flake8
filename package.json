@@ -87,7 +87,7 @@
     "atom-linter": "10.0.0",
     "atom-package-deps": "5.0.0",
     "fs-plus": "3.1.1",
-    "semver": "5.6.0"
+    "semver": "6.0.0"
   },
   "devDependencies": {
     "eslint": "5.15.3",
