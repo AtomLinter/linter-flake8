@@ -81,6 +81,11 @@
         "type": "string"
       },
       "description": "Define additional built in variables, in a comma separated list."
+    },
+    "lintsOnChange": {
+      "type": "boolean",
+      "default": true,
+      "description": "trigger of lint. if false, lint on save."
     }
   },
   "dependencies": {
